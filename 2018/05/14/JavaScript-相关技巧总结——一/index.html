@@ -86,14 +86,14 @@
 <meta name="description" content="JavaScript基础知识总结，包含了Array和Object的用法和使用技巧">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
-<meta property="og:title" content="JavaScript 相关技巧总结——一">
+<meta property="og:title" content="JavaScript 相关技巧总结之一">
 <meta property="og:url" content="http://yoursite.com/2018/05/14/JavaScript-相关技巧总结——一/index.html">
 <meta property="og:site_name" content="Pan&#39;s Blog">
 <meta property="og:description" content="JavaScript基础知识总结，包含了Array和Object的用法和使用技巧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-18T08:17:42.639Z">
+<meta property="og:updated_time" content="2018-07-18T08:26:11.476Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="JavaScript 相关技巧总结——一">
+<meta name="twitter:title" content="JavaScript 相关技巧总结之一">
 <meta name="twitter:description" content="JavaScript基础知识总结，包含了Array和Object的用法和使用技巧">
 
 
@@ -130,7 +130,7 @@
 
 
 
-  <title>JavaScript 相关技巧总结——一 | Pan's Blog</title>
+  <title>JavaScript 相关技巧总结之一 | Pan's Blog</title>
   
 
 
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">JavaScript 相关技巧总结——一</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript 相关技巧总结之一</h1>
         
 
         <div class="post-meta">
@@ -366,8 +366,7 @@
 
       
         <h3 id="JavaScript-相关技巧总结"><a href="#JavaScript-相关技巧总结" class="headerlink" title="JavaScript 相关技巧总结"></a>JavaScript 相关技巧总结</h3><ol>
-<li><p><code>splice()</code></p>
-<ul>
+<li><h3 id="splice"><a href="#splice" class="headerlink" title="splice()"></a><code>splice()</code></h3><ul>
 <li>方法向/从数组中添加/删除项目，然后返回被删除的项目。</li>
 <li>该方法会改变原始数组。</li>
 </ul>
@@ -379,8 +378,7 @@
 </li>
 </ol>
 <ol start="2">
-<li><p><code>concat()</code></p>
-<ul>
+<li><h3 id="concat"><a href="#concat" class="headerlink" title="concat()"></a><code>concat()</code></h3><ul>
 <li>方法用于连接两个或多个数组。</li>
 <li>该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。</li>
 </ul>
@@ -392,8 +390,7 @@
 </li>
 </ol>
 <ol start="3">
-<li><p><code>Object.assign()</code></p>
-<ul>
+<li><h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a><code>Object.assign()</code></h3><ul>
 <li>方法用来将源对象（source）的所有可枚举属性，复制到目标对象（target）。</li>
 <li>它至少需要两个对象作为参数，第一个参数是目标对象，后面的参数都是源对象。只要有一个参数不是对象，就会抛出TypeError错误。</li>
 </ul>
@@ -437,8 +434,7 @@
 <p>上面代码中，<strong>target对象的a属性被source对象的a属性整个替换掉了，而不会得到{ a: { b: ‘hello’, d: ‘e’ } }的结果</strong>。这通常不是开发者想要的，需要特别小心。有一些函数库提供Object.assign的定制版本（比如<code>Lodash</code>的<code>_.defaultsDeep</code>方法），可以解决深拷贝的问题。</p>
 </blockquote>
 <ul>
-<li><p>用途</p>
-<ul>
+<li><h3 id="用途"><a href="#用途" class="headerlink" title="用途"></a>用途</h3><ul>
 <li>为对象添加属性</li>
 </ul>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(x, y) &#123;</span><br><span class="line">    <span class="built_in">Object</span>.assign(<span class="keyword">this</span>, &#123;x, y&#125;);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -533,7 +529,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/05/14/JavaScript-相关技巧总结——一/" title="JavaScript 相关技巧总结——一">http://yoursite.com/2018/05/14/JavaScript-相关技巧总结——一/</a>
+    <a href="http://yoursite.com/2018/05/14/JavaScript-相关技巧总结——一/" title="JavaScript 相关技巧总结之一">http://yoursite.com/2018/05/14/JavaScript-相关技巧总结——一/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -745,7 +741,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-相关技巧总结"><span class="nav-number">1.</span> <span class="nav-text">JavaScript 相关技巧总结</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#JavaScript-相关技巧总结"><span class="nav-number">1.</span> <span class="nav-text">JavaScript 相关技巧总结</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#splice"><span class="nav-number">2.</span> <span class="nav-text">splice()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#concat"><span class="nav-number">3.</span> <span class="nav-text">concat()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Object-assign"><span class="nav-number">4.</span> <span class="nav-text">Object.assign()</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用途"><span class="nav-number">5.</span> <span class="nav-text">用途</span></a></li></ol></div>
             
 
           </div>
