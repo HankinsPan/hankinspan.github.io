@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧">
+<meta name="description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧,顺序难度不分前后，复习到那里记到哪了，没有章法就是章法。">
 <meta name="keywords" content="JavaScript">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JavaScript 相关技巧总结之二">
 <meta property="og:url" content="http://yoursite.com/2018/07/18/JavaScript-相关技巧总结之二/index.html">
 <meta property="og:site_name" content="Pan&#39;s Blog">
-<meta property="og:description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧">
+<meta property="og:description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧,顺序难度不分前后，复习到那里记到哪了，没有章法就是章法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-18T10:27:38.038Z">
+<meta property="og:updated_time" content="2018-07-18T14:23:32.562Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 相关技巧总结之二">
-<meta name="twitter:description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧">
+<meta name="twitter:description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧,顺序难度不分前后，复习到那里记到哪了，没有章法就是章法。">
 
 
 
@@ -348,7 +348,7 @@
 
           
               <div class="post-description">
-                  JavaScript基础知识总结，包含了一些不常见的使用方法和技巧
+                  JavaScript基础知识总结，包含了一些不常见的使用方法和技巧,顺序难度不分前后，复习到那里记到哪了，没有章法就是章法。
               </div>
           
 
@@ -524,6 +524,40 @@
 </ul>
 </li>
 </ul>
+<ol start="9">
+<li><h5 id="数据类型和变量"><a href="#数据类型和变量" class="headerlink" title="数据类型和变量"></a>数据类型和变量</h5><ul>
+<li><p>‘==’ 和‘===’的区别</p>
+<p>第一种是<code>==</code>比较，它会<strong>自动转换数据类型再比较</strong>，很多时候，会得到非常诡异的结果；</p>
+<p>第二种是<code>===</code>比较，<strong>它不会自动转换数据类型，如果数据类型不一致，返回<code>false</code>，如果一致，再比较。</strong></p>
+<p>由于JavaScript这个设计缺陷，<em>不要</em>使用<code>==</code>比较，始终坚持使用<code>===</code>比较。</p>
+<p><strong>另一个例外是<code>NaN</code>这个特殊的Number与所有其他值都不相等，包括它自己：</strong></p>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="literal">NaN</span> === <span class="literal">NaN</span>; <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>能判断<code>NaN</code>的方法是通过<code>isNaN()</code>函数：</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">isNaN</span>(<span class="literal">NaN</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<ol start="10">
+<li><h5 id="数组相关"><a href="#数组相关" class="headerlink" title="数组相关"></a>数组相关</h5></li>
+</ol>
+<ul>
+<li><p>数组的长度</p>
+<p><em>请注意</em>，直接给<code>Array</code>的<code>length</code>赋一个新的值会导致<code>Array</code>大小的变化：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> arr = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>];</span><br><span class="line">arr.length; <span class="comment">// 3</span></span><br><span class="line">arr.length = <span class="number">6</span>;</span><br><span class="line">arr; <span class="comment">// arr变为[1, 2, 3, undefined, undefined, undefined]</span></span><br><span class="line">arr.length = <span class="number">2</span>;</span><br><span class="line">arr; <span class="comment">// arr变为[1, 2]</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>析构赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对象</span></span><br><span class="line"><span class="keyword">const</span> user = &#123; <span class="attr">name</span>: <span class="string">'guanguan'</span>, <span class="attr">age</span>: <span class="number">2</span> &#125;;</span><br><span class="line"><span class="keyword">const</span> &#123; name, age &#125; = user;</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;name&#125;</span> : <span class="subst">$&#123;age&#125;</span>`</span>);  <span class="comment">// guanguan : 2</span></span><br><span class="line">     </span><br><span class="line"><span class="comment">// 数组</span></span><br><span class="line"><span class="keyword">const</span> arr = [<span class="number">1</span>, <span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> [foo, bar] = arr;</span><br><span class="line"><span class="built_in">console</span>.log(foo);  <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li>dasdsa</li>
+</ul>
+<ol start="11">
+<li><h5 id="数据类型-Map-和-Set"><a href="#数据类型-Map-和-Set" class="headerlink" title="数据类型 Map 和 Set"></a>数据类型 Map 和 Set</h5></li>
+</ol>
 
       
     </div>
@@ -698,7 +732,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -720,7 +754,7 @@
               
               <div class="site-state-item site-state-tags">
                 
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">标签</span>
                 
               </div>
@@ -781,7 +815,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript的一些不常见操作"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的一些不常见操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#toString-的操作"><span class="nav-number">1.1.</span> <span class="nav-text">toString()的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于typeof和instanceof使用的弊端"><span class="nav-number">1.2.</span> <span class="nav-text">对于typeof和instanceof使用的弊端</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NaN的一些使用"><span class="nav-number">1.3.</span> <span class="nav-text">NaN的一些使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#神奇的console-log"><span class="nav-number">1.4.</span> <span class="nav-text">神奇的console.log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Instanceof-和typeof-的实现原理"><span class="nav-number">1.5.</span> <span class="nav-text">Instanceof 和typeof 的实现原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性描述对象"><span class="nav-number">1.6.</span> <span class="nav-text">属性描述对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造函数和New命令"><span class="nav-number">1.7.</span> <span class="nav-text">构造函数和New命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定时器"><span class="nav-number">1.8.</span> <span class="nav-text">定时器</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript的一些不常见操作"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的一些不常见操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#toString-的操作"><span class="nav-number">1.1.</span> <span class="nav-text">toString()的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于typeof和instanceof使用的弊端"><span class="nav-number">1.2.</span> <span class="nav-text">对于typeof和instanceof使用的弊端</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NaN的一些使用"><span class="nav-number">1.3.</span> <span class="nav-text">NaN的一些使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#神奇的console-log"><span class="nav-number">1.4.</span> <span class="nav-text">神奇的console.log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Instanceof-和typeof-的实现原理"><span class="nav-number">1.5.</span> <span class="nav-text">Instanceof 和typeof 的实现原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性描述对象"><span class="nav-number">1.6.</span> <span class="nav-text">属性描述对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造函数和New命令"><span class="nav-number">1.7.</span> <span class="nav-text">构造函数和New命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定时器"><span class="nav-number">1.8.</span> <span class="nav-text">定时器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型和变量"><span class="nav-number">1.9.</span> <span class="nav-text">数据类型和变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组相关"><span class="nav-number">1.10.</span> <span class="nav-text">数组相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型-Map-和-Set"><span class="nav-number">1.11.</span> <span class="nav-text">数据类型 Map 和 Set</span></a></li></ol></li></ol></div>
             
 
           </div>
