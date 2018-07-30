@@ -83,21 +83,21 @@
 
 
 
-<meta name="description" content="在一次项目开发过程中，发现自己着手的业务中有一个比较常用的功能模块。就如同‘微信朋友圈，微博和Twitter’等App比较常用的一个功能，图文消息中图片的排版和图片详情的浏览。因为在github和js.coach找一些公共的可直接用的开源组件不是能很好的对应自己的业务逻辑，所以打算根据自己的业务场景，开发一个符合自己要求的组件出来，并且把开发过程的历程总结并记录下来。给自己重新整理加深学习，给后来">
+<meta name="description" content="在一次项目开发过程中，发现自己着手的业务中有一个比较常用的功能模块。就如同‘微信朋友圈，微博和Twitter’等App比较常用的一个功能，图文消息中图片的排版和图片详情的浏览。因为在github和js.coach找一些公共的可直接用的开源组件不是能很好的对应自己的业务逻辑，所以打算根据自己的业务场景，开发一个符合自己要求的组件出来，并且把开发过程总结并记录下来。给自己以重新整理加深学习，给后来者以">
 <meta name="keywords" content="ReactNative">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记一个ReactNative开源组件（图片浏览器）的开发实录">
 <meta property="og:url" content="http://yoursite.com/2018/07/29/记一个ReactNative开源组件（图片浏览器）的开发实录/index.html">
 <meta property="og:site_name" content="Pan&#39;s Blog">
-<meta property="og:description" content="在一次项目开发过程中，发现自己着手的业务中有一个比较常用的功能模块。就如同‘微信朋友圈，微博和Twitter’等App比较常用的一个功能，图文消息中图片的排版和图片详情的浏览。因为在github和js.coach找一些公共的可直接用的开源组件不是能很好的对应自己的业务逻辑，所以打算根据自己的业务场景，开发一个符合自己要求的组件出来，并且把开发过程的历程总结并记录下来。给自己重新整理加深学习，给后来">
+<meta property="og:description" content="在一次项目开发过程中，发现自己着手的业务中有一个比较常用的功能模块。就如同‘微信朋友圈，微博和Twitter’等App比较常用的一个功能，图文消息中图片的排版和图片详情的浏览。因为在github和js.coach找一些公共的可直接用的开源组件不是能很好的对应自己的业务逻辑，所以打算根据自己的业务场景，开发一个符合自己要求的组件出来，并且把开发过程总结并记录下来。给自己以重新整理加深学习，给后来者以">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pbu5ubzxu.bkt.clouddn.com/18-7-14/82328238.jpg">
 <meta property="og:image" content="http://pbu5ubzxu.bkt.clouddn.com/18-7-14/85088044.jpg">
 <meta property="og:image" content="http://pbu5ubzxu.bkt.clouddn.com/18-7-14/79801354.jpg">
-<meta property="og:updated_time" content="2018-07-30T04:15:48.217Z">
+<meta property="og:updated_time" content="2018-07-30T04:20:22.781Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记一个ReactNative开源组件（图片浏览器）的开发实录">
-<meta name="twitter:description" content="在一次项目开发过程中，发现自己着手的业务中有一个比较常用的功能模块。就如同‘微信朋友圈，微博和Twitter’等App比较常用的一个功能，图文消息中图片的排版和图片详情的浏览。因为在github和js.coach找一些公共的可直接用的开源组件不是能很好的对应自己的业务逻辑，所以打算根据自己的业务场景，开发一个符合自己要求的组件出来，并且把开发过程的历程总结并记录下来。给自己重新整理加深学习，给后来">
+<meta name="twitter:description" content="在一次项目开发过程中，发现自己着手的业务中有一个比较常用的功能模块。就如同‘微信朋友圈，微博和Twitter’等App比较常用的一个功能，图文消息中图片的排版和图片详情的浏览。因为在github和js.coach找一些公共的可直接用的开源组件不是能很好的对应自己的业务逻辑，所以打算根据自己的业务场景，开发一个符合自己要求的组件出来，并且把开发过程总结并记录下来。给自己以重新整理加深学习，给后来者以">
 <meta name="twitter:image" content="http://pbu5ubzxu.bkt.clouddn.com/18-7-14/82328238.jpg">
 
 
@@ -330,7 +330,7 @@
 
           
               <div class="post-description">
-                  在一次项目开发过程中，发现自己着手的业务中有一个比较常用的功能模块。就如同‘微信朋友圈，微博和Twitter’等App比较常用的一个功能，图文消息中图片的排版和图片详情的浏览。因为在github和js.coach找一些公共的可直接用的开源组件不是能很好的对应自己的业务逻辑，所以打算根据自己的业务场景，开发一个符合自己要求的组件出来，并且把开发过程的历程总结并记录下来。给自己重新整理加深学习，给后来者以借鉴。
+                  在一次项目开发过程中，发现自己着手的业务中有一个比较常用的功能模块。就如同‘微信朋友圈，微博和Twitter’等App比较常用的一个功能，图文消息中图片的排版和图片详情的浏览。因为在github和js.coach找一些公共的可直接用的开源组件不是能很好的对应自己的业务逻辑，所以打算根据自己的业务场景，开发一个符合自己要求的组件出来，并且把开发过程总结并记录下来。给自己以重新整理加深学习，给后来者以借鉴。
               </div>
           
 
@@ -358,7 +358,7 @@
 <li>详情浏览：左右滑动时候显示相邻加载成功的图片，直到滑动到第一张图片或者最后一张图片。</li>
 </ol>
 </blockquote>
-<center class="half"><br><br><img src="http://pbu5ubzxu.bkt.clouddn.com/18-7-14/82328238.jpg" width="270"><img src="http://pbu5ubzxu.bkt.clouddn.com/18-7-14/85088044.jpg" width="290"><img src="http://pbu5ubzxu.bkt.clouddn.com/18-7-14/79801354.jpg" width="280"><br><br></center>
+<center class="half"><br><br><img src="http://pbu5ubzxu.bkt.clouddn.com/18-7-14/82328238.jpg" width="25%"><img src="http://pbu5ubzxu.bkt.clouddn.com/18-7-14/85088044.jpg" width="30%"><img src="http://pbu5ubzxu.bkt.clouddn.com/18-7-14/79801354.jpg" width="30%"><br><br></center>
 
 <ul>
 <li><h5 id="拆分对应实现的功能块"><a href="#拆分对应实现的功能块" class="headerlink" title="拆分对应实现的功能块"></a>拆分对应实现的功能块</h5><ol>
