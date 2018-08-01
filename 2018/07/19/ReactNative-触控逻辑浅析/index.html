@@ -93,7 +93,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="http://pbu5ubzxu.bkt.clouddn.com/18-8-1/12927857.jpg">
 <meta property="og:image" content="http://pbu5ubzxu.bkt.clouddn.com/18-8-1/4307281.jpg">
-<meta property="og:updated_time" content="2018-08-01T07:52:57.497Z">
+<meta property="og:updated_time" content="2018-08-01T07:54:48.159Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="ReactNative 触控逻辑浅析">
 <meta name="twitter:description" content="移动端开发不可避免的一个问题就是交互逻辑，不论是（android/ios）原生还是(react-native)混合开发都有一套完整的交互。父组件与子组件之间的嵌套以及事件劫持，从手指在屏幕上按下的那一刻，到在屏幕上移动，再到手指松开，完成了这一系列的触控操作。对于ReactNative而言，我们大部分还是采用官方提供的组件（Text、TouchableXXX），使用的相应的Api去处理。但是，对于">
@@ -414,10 +414,10 @@
 <li><code>View.props.onStartShouldSetResponderCapture</code>,这个属性接收一个回调函数，返回原型是<code>function(evt):bool</code>，在触摸事件开始（TouchDown）的时候，会先询问这个函数是否要劫持事件响应者设置，自己处理，当返回<code>ture</code>的时候，表示要劫持。</li>
 <li><code>View.props.onMoveShouldSetResponderCapture</code>，这个属性接收一个回调函数，返回原型是<code>function(evt):bool</code>,在触摸移动事件开始（TouchMove）的时候，会询问这个函数是否要劫持这个事件响应者设置。返回<code>ture</code>的时候，表示要劫持。</li>
 </ul>
-<h4 id="一些总结："><a href="#一些总结：" class="headerlink" title="一些总结："></a>一些总结：</h4><p>其实事件触摸事件整体来说是比较简单的，我们这里只是简单的介绍一下各个方法的应用和注意的方面。在每一个稍微复杂的交互设计中，这个几个响应机制的控制和其他组建的配合就显得尤为重要（尤其像Animated.View、Animated.Image）。触发、移动、释放这几个的控制在不同的场景也有着不同的作用。我们这里就例举各种可能存在的场景。需要各位读者自己多做Demo自己去揣测和认真琢磨。</p>
+<h3 id="一些总结："><a href="#一些总结：" class="headerlink" title="一些总结："></a>一些总结：</h3><p>其实事件触摸事件整体来说是比较简单的，我们这里只是简单的介绍一下各个方法的应用和注意的方面。在每一个稍微复杂的交互设计中，这个几个响应机制的控制和其他组建的配合就显得尤为重要（尤其像Animated.View、Animated.Image）。触发、移动、释放这几个的控制在不同的场景也有着不同的作用。我们这里就例举各种可能存在的场景。需要各位读者自己多做Demo自己去揣测和认真琢磨。</p>
 <p>本文是浅析，介绍比较简单。可能存在诸多错误和不足之处，请各位大佬纰漏指出，多多批评。</p>
 <p>感谢阅读！🙏</p>
-<h4 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h4><ol>
+<h3 id="参考文档"><a href="#参考文档" class="headerlink" title="参考文档"></a>参考文档</h3><ol>
 <li><a href="https://blog.csdn.net/njafei/article/details/76551176" target="_blank" rel="noopener">panResponder详解及Demo</a> (<em>2017-08-01,CSDN</em>)</li>
 <li><a href="https://codedaily.io/tutorials/36/React-Native-Animated-API-with-PanResponder" target="_blank" rel="noopener">React-Native Animated API with PanResponder</a></li>
 <li><a href="https://www.race604.com/react-native-touch-event/" target="_blank" rel="noopener">React Native 触摸事件处理详</a> (<em>2016-09-17,Race604</em>)</li>
@@ -686,7 +686,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ReactNative中常见的可触控方法"><span class="nav-number">1.</span> <span class="nav-text">ReactNative中常见的可触控方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手势响应系统（基本）"><span class="nav-number">2.</span> <span class="nav-text">手势响应系统（基本）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#响应的生命周期"><span class="nav-number">2.1.</span> <span class="nav-text">响应的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应的流程和逻辑"><span class="nav-number">2.2.</span> <span class="nav-text">响应的流程和逻辑</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#一些总结："><span class="nav-number">2.3.</span> <span class="nav-text">一些总结：</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#参考文档"><span class="nav-number">2.4.</span> <span class="nav-text">参考文档</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#ReactNative中常见的可触控方法"><span class="nav-number">1.</span> <span class="nav-text">ReactNative中常见的可触控方法</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#手势响应系统（基本）"><span class="nav-number">2.</span> <span class="nav-text">手势响应系统（基本）</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#响应的生命周期"><span class="nav-number">2.1.</span> <span class="nav-text">响应的生命周期</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#响应的流程和逻辑"><span class="nav-number">2.2.</span> <span class="nav-text">响应的流程和逻辑</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#一些总结："><span class="nav-number">3.</span> <span class="nav-text">一些总结：</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考文档"><span class="nav-number">4.</span> <span class="nav-text">参考文档</span></a></li></ol></div>
             
 
           </div>
