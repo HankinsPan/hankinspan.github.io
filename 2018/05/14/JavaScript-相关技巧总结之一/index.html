@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Pan&#39;s Blog">
 <meta property="og:description" content="JavaScript基础知识总结，包含了Array和Object的用法和使用技巧">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-18T08:26:11.476Z">
+<meta property="og:updated_time" content="2018-08-09T02:24:33.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 相关技巧总结之一">
 <meta name="twitter:description" content="JavaScript基础知识总结，包含了Array和Object的用法和使用技巧">
@@ -367,7 +367,7 @@
       
         <h3 id="JavaScript-相关技巧总结"><a href="#JavaScript-相关技巧总结" class="headerlink" title="JavaScript 相关技巧总结"></a>JavaScript 相关技巧总结</h3><ol>
 <li><h3 id="splice"><a href="#splice" class="headerlink" title="splice()"></a><code>splice()</code></h3><ul>
-<li>方法向/从数组中添加/删除项目，然后返回被删除的项目。</li>
+<li>方法为从数组中添加/删除项目，然后返回被删除的项目。</li>
 <li>该方法会改变原始数组。</li>
 </ul>
 <p>语法：</p>
@@ -375,9 +375,22 @@
 <p>| 参数              | 描述                                                         |<br>| —————– | ———————————————————— |<br>| index             | 必需。整数，规定添加/删除项目的位置，使用负数可从数组结尾处规定位置。 |<br>| howmany           | 必需。要删除的项目数量。如果设置为 0，则不会删除项目。       |<br>| item1, …, itemX | 可选。向数组添加的新项目。                                   |</p>
 <p>返回值：</p>
 <p>| 类型  | 描述                                 |<br>| —– | ———————————— |<br>| Array | 包含被删除项目的新数组，如果有的话。 |</p>
+<p>主要用法：</p>
+<ol>
+<li>删除</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array.splice(index,num) </span></span><br><span class="line"><span class="comment">// 返回值为删除内容，Array为结果值。 index为起始项，num为删除个数</span></span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">42</span>, <span class="number">54</span>, <span class="number">323</span>, <span class="number">23235</span>, <span class="number">42</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">57</span>, <span class="number">32</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> modArray = array.splice(<span class="number">2</span>,<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(array); </span><br><span class="line"><span class="comment">// [ 42, 54, 42, 2, 4, 57, 32 ]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(modArray);</span><br><span class="line"><span class="comment">// [ 323, 23235 ]</span></span><br></pre></td></tr></table></figure>
+<ol start="2">
+<li>插入</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array.splice(index,0,insertItem)</span></span><br><span class="line"><span class="comment">// 返回值为空，Array为结果值。 index为要插入的起始项，0为替换的个数，insertItem为插入项</span></span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">42</span>, <span class="number">54</span>, <span class="number">323</span>, <span class="number">23235</span>, <span class="number">42</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">57</span>, <span class="number">32</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> modArray = array.splice(<span class="number">2</span>,<span class="number">0</span>,<span class="string">'6666666'</span>,<span class="string">'aaa'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(array); </span><br><span class="line"><span class="comment">// [ 42, 54, '6666666', 'aaa', 323, 23235, 42, 2, 4, 57, 32 ]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(modArray);</span><br><span class="line"><span class="comment">// []</span></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>替换</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// array.splice(index,num,insertItem)</span></span><br><span class="line"><span class="comment">// 返回值为被替换的内容，Array为结果值。 index为要插入的起始项，num为替换的个数，insertItem为替换项</span></span><br><span class="line"><span class="keyword">const</span> array = [<span class="number">42</span>, <span class="number">54</span>, <span class="number">323</span>, <span class="number">23235</span>, <span class="number">42</span>, <span class="number">2</span>, <span class="number">4</span>, <span class="number">57</span>, <span class="number">32</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> modArray = array.splice(<span class="number">2</span>,<span class="number">1</span>,<span class="string">'lalala'</span>,<span class="number">70</span>,<span class="number">666</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(array); </span><br><span class="line"><span class="comment">// [ 42, 54, 'lalala', 70, 666, 23235, 42, 2, 4, 57, 32 ]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(modArray);</span><br><span class="line"><span class="comment">// [ 323 ]</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<ol start="2">
+<ol>
 <li><h3 id="concat"><a href="#concat" class="headerlink" title="concat()"></a><code>concat()</code></h3><ul>
 <li>方法用于连接两个或多个数组。</li>
 <li>该方法不会改变现有的数组，而仅仅会返回被连接数组的一个副本。</li>
@@ -389,7 +402,7 @@
 <p>返回一个新的数组。该数组是通过把所有 arrayX 参数添加到 arrayObject 中生成的。如果要进行 concat() 操作的参数是数组，那么添加的是数组中的元素，而不是数组。</p>
 </li>
 </ol>
-<ol start="3">
+<ol start="2">
 <li><h3 id="Object-assign"><a href="#Object-assign" class="headerlink" title="Object.assign()"></a><code>Object.assign()</code></h3><ul>
 <li>方法用来将源对象（source）的所有可枚举属性，复制到目标对象（target）。</li>
 <li>它至少需要两个对象作为参数，第一个参数是目标对象，后面的参数都是源对象。只要有一个参数不是对象，就会抛出TypeError错误。</li>
