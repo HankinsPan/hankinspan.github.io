@@ -72,7 +72,7 @@
 
 
 
-  <meta name="keywords" content="正则表达式," />
+  <meta name="keywords" content="JavaScript,排序," />
 
 
 
@@ -83,18 +83,18 @@
 
 
 
-<meta name="description" content="正则表达式的学习和总结，记录一些正则表达式的规则和使用技巧。">
-<meta name="keywords" content="正则表达式">
+<meta name="description" content="JavaScript中常见的排序和数据操作方法，包含一些平时用到的Es6新的操作技巧。">
+<meta name="keywords" content="JavaScript,排序">
 <meta property="og:type" content="article">
-<meta property="og:title" content="正则表达式的学习笔记">
-<meta property="og:url" content="http://yoursite.com/2018/04/20/正则表达式的学习笔记/index.html">
+<meta property="og:title" content="JavaScript 中常见的排序">
+<meta property="og:url" content="http://yoursite.com/2018/05/08/JavaScript-中常见的排序/index.html">
 <meta property="og:site_name" content="Pan&#39;s Blog">
-<meta property="og:description" content="正则表达式的学习和总结，记录一些正则表达式的规则和使用技巧。">
+<meta property="og:description" content="JavaScript中常见的排序和数据操作方法，包含一些平时用到的Es6新的操作技巧。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-29T10:59:04.684Z">
+<meta property="og:updated_time" content="2018-08-09T10:40:52.227Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="正则表达式的学习笔记">
-<meta name="twitter:description" content="正则表达式的学习和总结，记录一些正则表达式的规则和使用技巧。">
+<meta name="twitter:title" content="JavaScript 中常见的排序">
+<meta name="twitter:description" content="JavaScript中常见的排序和数据操作方法，包含一些平时用到的Es6新的操作技巧。">
 
 
 
@@ -124,13 +124,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/04/20/正则表达式的学习笔记/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/05/08/JavaScript-中常见的排序/"/>
 
 
 
 
 
-  <title>正则表达式的学习笔记 | Pan's Blog</title>
+  <title>JavaScript 中常见的排序 | Pan's Blog</title>
   
 
 
@@ -257,7 +257,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/04/20/正则表达式的学习笔记/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/05/08/JavaScript-中常见的排序/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Hankins">
@@ -274,7 +274,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">正则表达式的学习笔记</h1>
+          <h1 class="post-title" itemprop="name headline">JavaScript 中常见的排序</h1>
         
 
         <div class="post-meta">
@@ -286,8 +286,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-04-20T21:00:41+08:00">
-                2018-04-20
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-05-08T17:10:00+08:00">
+                2018-05-08
               </time>
             
 
@@ -297,6 +297,28 @@
           </span>
 
           
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/JavaScript/" itemprop="url" rel="index">
+                    <span itemprop="name">JavaScript</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -305,8 +327,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2018/04/20/正则表达式的学习笔记/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/04/20/正则表达式的学习笔记/" itemprop="commentsCount"></span>
+                <a href="/2018/05/08/JavaScript-中常见的排序/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count gitment-comments-count" data-xid="/2018/05/08/JavaScript-中常见的排序/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -326,7 +348,7 @@
 
           
               <div class="post-description">
-                  正则表达式的学习和总结，记录一些正则表达式的规则和使用技巧。
+                  JavaScript中常见的排序和数据操作方法，包含一些平时用到的Es6新的操作技巧。
               </div>
           
 
@@ -343,112 +365,15 @@
       
 
       
-        <h4 id="正则表达式的学习笔记"><a href="#正则表达式的学习笔记" class="headerlink" title="正则表达式的学习笔记"></a>正则表达式的学习笔记</h4><blockquote>
-<p>正则表达式是匹配，要么匹配字符，要么匹配位置。</p>
-<p>正则表达式所做的事情就是对于一个动态的字符串，做相应的匹配和验证以及简单的字符串操作。</p>
-</blockquote>
-<ol>
-<li><h5 id="正则的思想和操作原则"><a href="#正则的思想和操作原则" class="headerlink" title="正则的思想和操作原则"></a>正则的思想和操作原则</h5></li>
-</ol>
-<ul>
-<li><h6 id="匹配"><a href="#匹配" class="headerlink" title="匹配"></a>匹配</h6><ol>
-<li><p>横向模糊匹配  —&gt; 指的是匹配的一段字符串中重复的一个或多个 /ab{2,5}c/</p>
-</li>
-<li><p>纵向模糊匹配  —&gt; 指的是匹配的一段字符串中一个类型的多种形式 /apple[s]/</p>
-</li>
-</ol>
-</li>
-</ul>
-<ul>
-<li><h6 id="字符组"><a href="#字符组" class="headerlink" title="字符组"></a>字符组</h6><ol>
-<li>多个可能存在中的一个或多个的匹配</li>
-<li>可确定的字符范围，或者除去某几个字符以为其他的所有</li>
-<li>字符常见的简写形式</li>
-</ol>
-<ul>
-<li>\d 表示<code>[0-9]</code>。指的是0-9之间范围中的一个数字</li>
-<li>\D 表示<code>[^0-9]</code>。 指的是<code>除去0-9</code>之间范围的一个数字</li>
-<li>\w 表示<code>[0-9a-zA-Z_]</code>。指的是数字、小写字母、大写字母和下划线。</li>
-<li>\W 表示<code>[^0-9a-zA-Z_]</code>。指的是<code>除去数字、小写字母、大写字母和下划线</code>之外的其他字符。</li>
-<li>\s 表示<code>[\t\v\r\n\f]</code>。指的是空白符、水平制表符、垂直制表符、换行符、回车符、换页符。</li>
-<li>\S 表示<code>[^\t\v\r\n\f]</code>。指的是<code>除去空白符、水平制表符、垂直制表符、换行符、回车符、换页符</code>的其他字符。</li>
-<li><code>.</code>表示<code>[^\n\r\u2028\u2029]</code>。指的是通配符，表示几乎任意字符。换行符、回车符、行分隔符和段分隔符除外。</li>
-<li>对于任意字符的支持：通常可以用[\d\D]、[\w\W]、[\s\S]和[^]中任何的一个。</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><h6 id="量词"><a href="#量词" class="headerlink" title="量词"></a>量词</h6><ol>
-<li><h6 id="量词的简写形式"><a href="#量词的简写形式" class="headerlink" title="量词的简写形式"></a>量词的简写形式</h6></li>
-</ol>
-<ul>
-<li><code>{m,}</code> 指的是至少出现m次</li>
-<li><code>{m}</code> 等价于 {m,m} ，指的是出现m次</li>
-<li><code>?</code> 等价于 {0,1}，指的的是出现或者不出现</li>
-<li><code>+</code> 等价于 {1,}, 指的是至少出现一次</li>
-<li><code>*</code> 等价于 {0,}, 指的是出现任意次，有可能不出现</li>
-</ul>
-<ol start="2">
-<li><h6 id="贪婪匹配和惰性匹配"><a href="#贪婪匹配和惰性匹配" class="headerlink" title="贪婪匹配和惰性匹配"></a>贪婪匹配和惰性匹配</h6></li>
-</ol>
-<ul>
-<li><p>贪婪和惰性匹配表现为当符合基本的满足条件后，不再继续匹配后面的匹配内容</p>
-</li>
-<li><p>通常在量词后面加个<code>?</code>表示实现惰性匹配</p>
-</li>
-</ul>
-<ol start="3">
-<li><h6 id="多选分支"><a href="#多选分支" class="headerlink" title="多选分支"></a>多选分支</h6></li>
-</ol>
-<ul>
-<li><p>多选分支的是在匹配条件中加入<code>|</code>来把多个可选匹配的内容作为可匹配项</p>
-</li>
-<li><p>一般来说，当在多分支中有相同结构的时候，一般要把相同结构中复杂的那一个放置在前面，如同：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/good|goodbye/g</span>;</span><br><span class="line"><span class="keyword">var</span> string = <span class="string">"goodbye"</span>;</span><br><span class="line"><span class="built_in">console</span>.log( string.match(regex) ); <span class="comment">// ["good"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 而把正则改成/goodbye|good/，结果是</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> regex = <span class="regexp">/goodbye|good/g</span>;</span><br><span class="line"><span class="keyword">var</span> string = <span class="string">"goodbye"</span>;</span><br><span class="line"><span class="built_in">console</span>.log( string.match(regex) ); <span class="comment">// ["goodbye"]</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-</li>
-<li><h6 id="匹配位置"><a href="#匹配位置" class="headerlink" title="匹配位置"></a>匹配位置</h6><ul>
-<li><code>^</code>和<code>$</code>在多行匹配中表示匹配行的开头和结尾。</li>
-<li><code>\b</code>和<code>\B</code>是单词的边界和非单词的边界。</li>
-<li><code>(?=p)</code>和<code>(?!p)</code>表示<code>p</code>前面的位置和<code>非p前面的位置</code>。</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><h6 id="分组和分支结构"><a href="#分组和分支结构" class="headerlink" title="分组和分支结构"></a>分组和分支结构</h6><ul>
-<li>通过括号<code>()</code>来区别匹配的组别。</li>
-<li>反向引用：<code>\1和\2</code>表示引用前面的第一个和第二个匹配方式。</li>
-<li>当引用了不存在的正则的时候，程序不会报错。只是对其字符本身做了转译。</li>
-<li>非捕获分组 <code>(?:p)</code></li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><h6 id="回溯与常见的回溯形式"><a href="#回溯与常见的回溯形式" class="headerlink" title="回溯与常见的回溯形式"></a>回溯与常见的回溯形式</h6><ul>
-<li>回溯是在匹配过程中，匹配多个规则时的重复筛选</li>
-<li>回溯法：本质是深度优先算法。其中退到之前的某一步这一过程，我们称为“回溯”。遍历所有存在的路线，走不通的时候，退回到上一步继续走下一个分支，如此循环。</li>
-<li>贪婪量词：默认从最大量匹配，直到匹配到。如果匹配不到，退出。</li>
-<li>惰性量词：在贪婪量词后面加一个<code>?</code>表示尽可能少的匹配。</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><h5 id="正则表达式的效率"><a href="#正则表达式的效率" class="headerlink" title="正则表达式的效率"></a>正则表达式的效率</h5><ul>
-<li>api相关方法的调用</li>
-<li>消除多余的回溯方法</li>
-<li>使用非捕获型分组</li>
-<li>独立出确定字符</li>
-<li>提取分支公共部分</li>
-<li>减少分支的数量，缩小他们的范围</li>
-</ul>
-</li>
-</ul>
-<ul>
-<li><h5 id="正则表达式的匹配方式"><a href="#正则表达式的匹配方式" class="headerlink" title="正则表达式的匹配方式"></a>正则表达式的匹配方式</h5><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">String#search</span><br><span class="line"></span><br><span class="line">String#split</span><br><span class="line"></span><br><span class="line">String#match</span><br><span class="line"></span><br><span class="line">String#replace</span><br><span class="line"></span><br><span class="line">RegExp#test</span><br><span class="line"></span><br><span class="line">RegExp#exec</span><br><span class="line"></span><br><span class="line"><span class="comment">// Api:</span></span><br><span class="line"><span class="comment">// 1. 切分 split(reg)</span></span><br><span class="line"><span class="comment">// 2. 提取 match</span></span><br><span class="line"><span class="comment">// 3. 替换 replace</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 修饰符</span></span><br><span class="line"><span class="comment">// g 全局匹配，即找到所有匹配的，单词是global</span></span><br><span class="line"><span class="comment">// i 忽略字母大小写，单词ingoreCase</span></span><br><span class="line"><span class="comment">// m 多行匹配，只影响^和$，二者变成行的概念，即行开头和行结尾。单词是multiline</span></span><br></pre></td></tr></table></figure>
-</li>
-</ul>
-<h4 id="常用正则表达式"><a href="#常用正则表达式" class="headerlink" title="常用正则表达式"></a>常用正则表达式</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 字符串trim方法模拟</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">trim</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str.replace(<span class="regexp">/^\s*(.*?)\s*$/g</span>,<span class="string">"$1"</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 将字符串首字母大写</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">titleize</span>(<span class="params">str</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> str.toLowerCase().replace(<span class="regexp">/(?:^|\s)\w/</span>,<span class="function"><span class="keyword">function</span>(<span class="params">c</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> c.toUpperCase();</span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 驼峰化</span></span><br></pre></td></tr></table></figure>
+        <h2 id="JavaScript中的常见排序"><a href="#JavaScript中的常见排序" class="headerlink" title="JavaScript中的常见排序"></a>JavaScript中的常见排序</h2><h3 id="快速排序"><a href="#快速排序" class="headerlink" title="快速排序"></a>快速排序</h3><p>思想：找基数 → 左右各做大小排序 → 递归 → 拼接</p>
+<p>时间复杂度：<code>O(n log n)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">quickSortV1</span>(<span class="params">arr</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (arr.length &lt;= <span class="number">1</span>) <span class="keyword">return</span> arr;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> leftArr = [];</span><br><span class="line">    <span class="keyword">let</span> rightArr = [];</span><br><span class="line">    <span class="keyword">let</span> midIndex = <span class="built_in">Math</span>.floor(arr.length / <span class="number">2</span>);</span><br><span class="line">    <span class="keyword">let</span> midNum = arr.splice(midIndex, <span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; arr.length; i++) &#123;</span><br><span class="line">        <span class="keyword">if</span> (arr[i] &lt; midNum) &#123;</span><br><span class="line">            leftArr.push(arr[i])</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            rightArr.push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> quickSort(leftArr).concat(midNum, quickSort(rightArr));</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h3><p>思想：找到最小（最大）值 → 放在左边（右边））→ 记住最小值的位置 → 缩短排序长度</p>
+<p>时间复杂度：<code>O(N²)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">selectSort</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr.length&lt;=<span class="number">1</span>) <span class="keyword">return</span> arr;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> temp = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length<span class="number">-1</span>;i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> minIndex = i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">let</span> j=i+<span class="number">1</span>;j&lt;arr.length;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(arr[i]&lt;arr[minIndex])&#123;</span><br><span class="line">                minIndex = i;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">if</span>(i!==minIndex)&#123;</span><br><span class="line">            temp = arr[i];</span><br><span class="line">            arr[i] = arr[minIndex];</span><br><span class="line">            arr[minIndex] = temp;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h3><p>思想：认为第一个元素有序 → 下一个元素从后向前扫描 → 在已排序的元素中，如果有大于新元素的，移动到后面位置 → 重复上一步骤，直到找到已排元素小于或者等于新元素 → 插入到其后面 → 重复上一组操作</p>
+<p>时间复杂度：<code>O(N²)</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 普通实现</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">insertSortV1</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr.length&lt;=<span class="number">1</span>) <span class="keyword">return</span> arr;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">1</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">        <span class="keyword">let</span> getData = arr[i];</span><br><span class="line">        <span class="keyword">let</span> perIndex = i<span class="number">-1</span>;</span><br><span class="line">        </span><br><span class="line">          <span class="keyword">while</span> (perIndex &gt;= <span class="number">0</span> &amp;&amp; arr[perIndex] &gt; getData) &#123;</span><br><span class="line">            arr[perIndex + <span class="number">1</span>] = arr[perIndex];</span><br><span class="line">            perIndex --;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        arr[perIndex+<span class="number">1</span>] = getData;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> arr;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -498,7 +423,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="http://yoursite.com/2018/04/20/正则表达式的学习笔记/" title="正则表达式的学习笔记">http://yoursite.com/2018/04/20/正则表达式的学习笔记/</a>
+    <a href="http://yoursite.com/2018/05/08/JavaScript-中常见的排序/" title="JavaScript 中常见的排序">http://yoursite.com/2018/05/08/JavaScript-中常见的排序/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>
@@ -513,7 +438,9 @@
       
         <div class="post-tags">
           
-            <a href="/tags/正则表达式/" rel="tag"># 正则表达式</a>
+            <a href="/tags/JavaScript/" rel="tag"># JavaScript</a>
+          
+            <a href="/tags/排序/" rel="tag"># 排序</a>
           
         </div>
       
@@ -526,8 +453,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2018/01/10/React-Native-复习/" rel="next" title="React_Native-复习">
-                <i class="fa fa-chevron-left"></i> React_Native-复习
+              <a href="/2018/04/20/正则表达式的学习笔记/" rel="next" title="正则表达式的学习笔记">
+                <i class="fa fa-chevron-left"></i> 正则表达式的学习笔记
               </a>
             
           </div>
@@ -536,8 +463,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2018/05/08/JavaScript-中常见的排序/" rel="prev" title="JavaScript 中常见的排序">
-                JavaScript 中常见的排序 <i class="fa fa-chevron-right"></i>
+              <a href="/2018/05/14/JavaScript-相关技巧总结之一/" rel="prev" title="JavaScript 相关技巧总结之一">
+                JavaScript 相关技巧总结之一 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -710,7 +637,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#正则表达式的学习笔记"><span class="nav-number">1.</span> <span class="nav-text">正则表达式的学习笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#正则的思想和操作原则"><span class="nav-number">1.1.</span> <span class="nav-text">正则的思想和操作原则</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#匹配"><span class="nav-number">1.1.1.</span> <span class="nav-text">匹配</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#字符组"><span class="nav-number">1.1.2.</span> <span class="nav-text">字符组</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#量词"><span class="nav-number">1.1.3.</span> <span class="nav-text">量词</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#量词的简写形式"><span class="nav-number">1.1.4.</span> <span class="nav-text">量词的简写形式</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#贪婪匹配和惰性匹配"><span class="nav-number">1.1.5.</span> <span class="nav-text">贪婪匹配和惰性匹配</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#多选分支"><span class="nav-number">1.1.6.</span> <span class="nav-text">多选分支</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#匹配位置"><span class="nav-number">1.1.7.</span> <span class="nav-text">匹配位置</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#分组和分支结构"><span class="nav-number">1.1.8.</span> <span class="nav-text">分组和分支结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#回溯与常见的回溯形式"><span class="nav-number">1.1.9.</span> <span class="nav-text">回溯与常见的回溯形式</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正则表达式的效率"><span class="nav-number">1.2.</span> <span class="nav-text">正则表达式的效率</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#正则表达式的匹配方式"><span class="nav-number">1.3.</span> <span class="nav-text">正则表达式的匹配方式</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#常用正则表达式"><span class="nav-number">2.</span> <span class="nav-text">常用正则表达式</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JavaScript中的常见排序"><span class="nav-number">1.</span> <span class="nav-text">JavaScript中的常见排序</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#快速排序"><span class="nav-number">1.1.</span> <span class="nav-text">快速排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#选择排序"><span class="nav-number">1.2.</span> <span class="nav-text">选择排序</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#插入排序"><span class="nav-number">1.3.</span> <span class="nav-text">插入排序</span></a></li></ol></li></ol></div>
             
 
           </div>
