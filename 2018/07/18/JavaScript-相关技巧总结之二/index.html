@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Pan&#39;s Blog">
 <meta property="og:description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧,顺序难度不分前后，复习到那里记到哪了，没有章法就是章法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-16T06:33:11.327Z">
+<meta property="og:updated_time" content="2018-08-16T08:26:17.576Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 相关技巧总结之二">
 <meta name="twitter:description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧,顺序难度不分前后，复习到那里记到哪了，没有章法就是章法。">
@@ -700,7 +700,112 @@
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 斐波那契数列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span>(<span class="params">n,ac1=<span class="number">1</span>,ac2=<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) &#123;<span class="keyword">return</span> ac2&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> fibonacci(n<span class="number">-1</span>,ac2,ac1+ac2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 </ul>
+<ol start="16">
+<li><h5 id="数组相关-1"><a href="#数组相关-1" class="headerlink" title="数组相关"></a>数组相关</h5><ul>
+<li>扩展运算符（<code>...</code>）</li>
+</ul>
+<blockquote>
+<p>扩展运算符可取代<code>apply</code>方法</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 的写法</span></span><br><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,[<span class="number">4</span>,<span class="number">17</span>,<span class="number">12</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的写法</span></span><br><span class="line"><span class="built_in">Math</span>.max(...[<span class="number">4</span>,<span class="number">17</span>,<span class="number">12</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于 </span></span><br><span class="line"><span class="built_in">Math</span>.max(<span class="number">4</span>,<span class="number">17</span>,<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
+<p>扩展运算符的用途：</p>
+<ol>
+<li>复制数组</li>
+</ol>
+<blockquote>
+<p>数组是复合型数据，直接复制的话，只是复制了指向底层数据结构的指针，而不是克隆一个全新的数组。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = a1;</span><br><span class="line"></span><br><span class="line">a2[<span class="number">0</span>] = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a1); <span class="comment">// [2,2]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// a2并不是a1的克隆，而是指向同一份数据的另一个指针。修改a2,会直接导致a1值的变化。</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对于ES5只能用变通的方法拷贝数组</span></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = a1.concat();</span><br><span class="line"></span><br><span class="line">a2[<span class="number">0</span>] = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a1); <span class="comment">// [1,2]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES6扩展运算符的数组复制使用</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a2 = [...a1];</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<pre><code>2. 合并数组
 
+&gt; 扩展运算符为ES6提供了新的数组合并思路
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = [<span class="string">'hello'</span>,<span class="string">'world'</span>,<span class="string">'pan'</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = [<span class="number">1</span>,<span class="number">23</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> a3 = [<span class="literal">false</span>,<span class="literal">true</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5 的写法</span></span><br><span class="line">a1.concat(a2,a3);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的写法</span></span><br><span class="line">[...a1,...a2,...a3];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上都是浅拷贝</span></span><br></pre></td></tr></table></figure>
+
+
+
+3. 与解构赋值结合
+
+&gt; 如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> [...butLast, last] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="comment">// 报错</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> [first, ...middle, last] = [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>];</span><br><span class="line"><span class="comment">// 报错</span></span><br></pre></td></tr></table></figure>
+
+
+
+4. 字符串
+
+&gt; 将字符串转成数组
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[...hello];</span><br><span class="line"><span class="comment">// ['h','e','l','l','0']</span></span><br></pre></td></tr></table></figure>
+
+
+
+5. `Iterator`接口，`Map`，`Set`，`Generator`函数
+
+&gt; 任何`Iterator`接口的对象，都可以用扩展运算符转化为数组。
+
+
+
+- `Array.from`
+
+&gt; 方法用于将俩类数据转为真正的数组：类似数组的对象和可遍历的对象
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> toArray = <span class="function">(<span class="params">(</span>)=&gt;</span><span class="built_in">Array</span>.from?<span class="built_in">Array</span>.from:<span class="function"><span class="params">obj</span>=&gt;</span>[].slice.call(obj))();</span><br></pre></td></tr></table></figure>
+
+
+
+- `Array.of()`
+
+&gt; 方法用于将一组值，转为数组
+
+
+
+- `Array.find()`
+
+&gt; 数组依次遍历，直到找到第一个满足条件的数组成员。返回一个回调函数，直到找出第一个返回值为`true`的成员，然后返回该成员。如果没有符合条件的成员，则返回`undefined`。
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>].find(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value &gt; <span class="number">9</span>;</span><br><span class="line">&#125;) <span class="comment">// 10</span></span><br></pre></td></tr></table></figure>
+
+
+
+- `Array.findIndex()`
+
+&gt; 返回第一个符合条件的数组成员的位置，如果所有成员都不符合条件，则返回`-1`。
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">5</span>, <span class="number">10</span>, <span class="number">15</span>].findIndex(<span class="function"><span class="keyword">function</span>(<span class="params">value, index, arr</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> value &gt; <span class="number">9</span>;</span><br><span class="line">&#125;) <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+
+*PS: 这两个方法都可以发现`NaN`，弥补了数组的`indexOf`方法的不足。*
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[<span class="literal">NaN</span>].indexOf(<span class="literal">NaN</span>)</span><br><span class="line"><span class="comment">// -1</span></span><br><span class="line"></span><br><span class="line">[<span class="literal">NaN</span>].findIndex(<span class="function"><span class="params">y</span> =&gt;</span> <span class="built_in">Object</span>.is(<span class="literal">NaN</span>, y))</span><br><span class="line"><span class="comment">// 0</span></span><br></pre></td></tr></table></figure>
+
+
+
+- 数组实例的 `entries()`，`keys()`，`values()`
+
+&gt; `keys()`是对键名的遍历、`values()`是对键值的遍历，`entries()`是对键值对的遍历。
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> index <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].keys()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(index);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0</span></span><br><span class="line"><span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> elem <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].values()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(elem);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 'a'</span></span><br><span class="line"><span class="comment">// 'b'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> (<span class="keyword">let</span> [index, elem] <span class="keyword">of</span> [<span class="string">'a'</span>, <span class="string">'b'</span>].entries()) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(index, elem);</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 0 "a"</span></span><br><span class="line"><span class="comment">// 1 "b"</span></span><br></pre></td></tr></table></figure>
+
+
+
+- 数组实例的 `flat()`, `flatMap()`
+
+&gt; 数组的成员有时还是数组，`Array.prototype.flat()`用于将嵌套的数组“拉平”，变成一维的数组。该方法返回一个新数组，对原数据没有影响。
+&gt;
+&gt; `flat()` 默认只能拉平一层，可以将参数写成一个整数传入。
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">[<span class="number">1</span>, <span class="number">2</span>, [<span class="number">3</span>, <span class="number">4</span>]].flat()</span><br><span class="line"><span class="comment">// [1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+
+
+
+&gt; 数组内多层嵌套做一层操作的方法有多种，可以根据操作的数据源不同来选择最适合的方式。通用的方法为递归查找法：：
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 去数组多重嵌套</span></span><br><span class="line"><span class="keyword">let</span> mArray = [];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">unFlat</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr.length&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">return</span> mArrahy.push(arr[<span class="number">0</span>])</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(<span class="built_in">Array</span>.isArray(arr[i]))&#123;</span><br><span class="line">            unFlat(arr[i])</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            mArray.push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> mArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 如果数组内容都是数字的话</span></span><br><span class="line"><span class="comment">// 可以先将数组转为用‘,’连接的字符串，然后再根据‘,’把字符串重新组装成数组</span></span><br><span class="line"><span class="keyword">let</span> UNFlatArray = arr.join(<span class="string">','</span>).split(<span class="string">','</span>);</span><br></pre></td></tr></table></figure>
+</code></pre>
       
     </div>
     
@@ -961,7 +1066,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript的一些不常见操作"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的一些不常见操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#toString-的操作"><span class="nav-number">1.1.</span> <span class="nav-text">toString()的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于typeof和instanceof使用的弊端"><span class="nav-number">1.2.</span> <span class="nav-text">对于typeof和instanceof使用的弊端</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NaN的一些使用"><span class="nav-number">1.3.</span> <span class="nav-text">NaN的一些使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#神奇的console-log"><span class="nav-number">1.4.</span> <span class="nav-text">神奇的console.log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Instanceof-和typeof-的实现原理"><span class="nav-number">1.5.</span> <span class="nav-text">Instanceof 和typeof 的实现原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性描述对象"><span class="nav-number">1.6.</span> <span class="nav-text">属性描述对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造函数和New命令"><span class="nav-number">1.7.</span> <span class="nav-text">构造函数和New命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定时器"><span class="nav-number">1.8.</span> <span class="nav-text">定时器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型和变量"><span class="nav-number">1.9.</span> <span class="nav-text">数据类型和变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组相关"><span class="nav-number">1.10.</span> <span class="nav-text">数组相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型-Map-和-Set"><span class="nav-number">1.11.</span> <span class="nav-text">数据类型 Map 和 Set</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量和作用域"><span class="nav-number">1.12.</span> <span class="nav-text">变量和作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量的解构和赋值"><span class="nav-number">1.13.</span> <span class="nav-text">变量的解构和赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#交换变量的值"><span class="nav-number">1.13.1.</span> <span class="nav-text">交换变量的值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#从函数返回多个值"><span class="nav-number">1.13.2.</span> <span class="nav-text">从函数返回多个值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#函数参数的定义"><span class="nav-number">1.13.3.</span> <span class="nav-text">函数参数的定义</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#提取JSON数据"><span class="nav-number">1.13.4.</span> <span class="nav-text">提取JSON数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#函数参数的默认值"><span class="nav-number">1.13.5.</span> <span class="nav-text">函数参数的默认值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#遍历Map结构"><span class="nav-number">1.13.6.</span> <span class="nav-text">遍历Map结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#输入模块的指定方法"><span class="nav-number">1.13.7.</span> <span class="nav-text">输入模块的指定方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符串相关"><span class="nav-number">1.14.</span> <span class="nav-text">字符串相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数相关"><span class="nav-number">1.15.</span> <span class="nav-text">函数相关</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript的一些不常见操作"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的一些不常见操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#toString-的操作"><span class="nav-number">1.1.</span> <span class="nav-text">toString()的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于typeof和instanceof使用的弊端"><span class="nav-number">1.2.</span> <span class="nav-text">对于typeof和instanceof使用的弊端</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NaN的一些使用"><span class="nav-number">1.3.</span> <span class="nav-text">NaN的一些使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#神奇的console-log"><span class="nav-number">1.4.</span> <span class="nav-text">神奇的console.log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Instanceof-和typeof-的实现原理"><span class="nav-number">1.5.</span> <span class="nav-text">Instanceof 和typeof 的实现原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性描述对象"><span class="nav-number">1.6.</span> <span class="nav-text">属性描述对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造函数和New命令"><span class="nav-number">1.7.</span> <span class="nav-text">构造函数和New命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定时器"><span class="nav-number">1.8.</span> <span class="nav-text">定时器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型和变量"><span class="nav-number">1.9.</span> <span class="nav-text">数据类型和变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组相关"><span class="nav-number">1.10.</span> <span class="nav-text">数组相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型-Map-和-Set"><span class="nav-number">1.11.</span> <span class="nav-text">数据类型 Map 和 Set</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量和作用域"><span class="nav-number">1.12.</span> <span class="nav-text">变量和作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量的解构和赋值"><span class="nav-number">1.13.</span> <span class="nav-text">变量的解构和赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#交换变量的值"><span class="nav-number">1.13.1.</span> <span class="nav-text">交换变量的值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#从函数返回多个值"><span class="nav-number">1.13.2.</span> <span class="nav-text">从函数返回多个值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#函数参数的定义"><span class="nav-number">1.13.3.</span> <span class="nav-text">函数参数的定义</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#提取JSON数据"><span class="nav-number">1.13.4.</span> <span class="nav-text">提取JSON数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#函数参数的默认值"><span class="nav-number">1.13.5.</span> <span class="nav-text">函数参数的默认值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#遍历Map结构"><span class="nav-number">1.13.6.</span> <span class="nav-text">遍历Map结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#输入模块的指定方法"><span class="nav-number">1.13.7.</span> <span class="nav-text">输入模块的指定方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符串相关"><span class="nav-number">1.14.</span> <span class="nav-text">字符串相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数相关"><span class="nav-number">1.15.</span> <span class="nav-text">函数相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组相关-1"><span class="nav-number">1.16.</span> <span class="nav-text">数组相关</span></a></li></ol></li></ol></div>
             
 
           </div>
