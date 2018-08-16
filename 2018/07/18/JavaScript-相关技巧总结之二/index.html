@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Pan&#39;s Blog">
 <meta property="og:description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧,顺序难度不分前后，复习到那里记到哪了，没有章法就是章法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-15T09:36:44.040Z">
+<meta property="og:updated_time" content="2018-08-16T06:33:11.327Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 相关技巧总结之二">
 <meta name="twitter:description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧,顺序难度不分前后，复习到那里记到哪了，没有章法就是章法。">
@@ -615,6 +615,91 @@
 </ol>
 </li>
 </ul>
+<ol start="14">
+<li><h5 id="字符串相关"><a href="#字符串相关" class="headerlink" title="字符串相关"></a>字符串相关</h5><ul>
+<li><code>indexOf()</code></li>
+</ul>
+<blockquote>
+<p>方法可返回某个指定的字符串值在字符串中首次出现的位置。</p>
+<p><strong>找到则返回<u>第一次出现的位置</u>，若没有找到返回 -1</strong>。</p>
+</blockquote>
+<p>语法：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">stringObject.indexOf(searchvalue,fromindex)</span><br></pre></td></tr></table></figure>
+<p>| 参数        | 描述                                                         |<br>| ———– | ———————————————————— |<br>| searchvalue | 必需，规定需检索的字符串值                                   |<br>| formIndex   | 可选的整数参数。规定在字符串中开始检索的位置。它的合法取值是 0 到 stringObject.length - 1。如省略该参数，则将从字符串的首字符开始检索。 |</p>
+<p>用途：</p>
+<ol>
+<li>数组去重</li>
+</ol>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">uniqArray</span>(<span class="params">arr</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(arr.length&lt;=<span class="number">1</span>) <span class="keyword">return</span> arr;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">let</span> temp = [];</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">let</span> i=<span class="number">0</span>;i&lt;arr.length;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(temp.indexOf(arr[i])===<span class="number">-1</span>)&#123;</span><br><span class="line">            temp.push(arr[i])</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> temp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>includes()</code></li>
+</ul>
+<blockquote>
+<p>返回布尔值，表示是否找到了参数字符串。</p>
+</blockquote>
+<ul>
+<li><code>repeat()</code></li>
+</ul>
+<blockquote>
+<p>返回一个新字符串，表示将原字符串重复了n次。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">'x'</span>.repeat(<span class="number">3</span>) <span class="comment">// xxx</span></span><br><span class="line"><span class="string">'hello'</span>.repeat(<span class="string">'2.9'</span>) <span class="comment">// hellohello</span></span><br></pre></td></tr></table></figure>
+<ul>
+<li>标签模板</li>
+</ul>
+<blockquote>
+<p>标签模板其实不是模板，而是函数调用的另一种形式。“标签”指的就是函数，紧跟在他后面的就是模板字符串就是它的参数。但是，如果字符串中有变量，就不是那么简单了。而是会将模板字符串处理成多个参数，再调用函数。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> a = <span class="number">5</span>;</span><br><span class="line"><span class="keyword">let</span> b = <span class="number">10</span>;</span><br><span class="line"></span><br><span class="line">tag<span class="string">`Hello <span class="subst">$&#123; a + b &#125;</span> world <span class="subst">$&#123; a * b &#125;</span>`</span>;</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">tag([<span class="string">'Hello '</span>, <span class="string">' world '</span>, <span class="string">''</span>], <span class="number">15</span>, <span class="number">50</span>);</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>Math()</code>相关的方法</li>
+</ul>
+<ol>
+<li><code>trunc</code> 方法用于去除一个数的小数部分，返回整数部分。</li>
+<li><code>sign</code>  方法用于判断一个数是：正数（+1）、负数（-1）、还是零（±0）、还是其他数值（NaN）</li>
+<li><code>cbrt</code> 方法用于计算一个数的立方根。</li>
+<li><code>hypot</code> 方法用于计算<u>平方和的平方根</u>。</li>
+</ol>
+</li>
+</ol>
+<ol start="15">
+<li><h5 id="函数相关"><a href="#函数相关" class="headerlink" title="函数相关"></a>函数相关</h5></li>
+</ol>
+<ul>
+<li><p>函数默认值和解构赋值</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fetch</span>(<span class="params">url,&#123;body=<span class="string">''</span>,method=<span class="string">'GET'</span>, headers=&#123;&#125;&#125;=&#123;&#125;</span>)</span>&#123;</span><br><span class="line">    consloe.log(method);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">fetch(<span class="string">'https://example.com'</span>);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>箭头函数</p>
+<blockquote>
+<p>箭头函数的使用有以下几个注意的点：</p>
+<ol>
+<li>函数体内的this对象，就是定义时所在的对象，而不是使用时的对象。</li>
+<li>不可以当做构造函数。也就是说，不可以使用 <code>new</code> 命令，否则抛出错误。</li>
+<li>不可以使用 <code>arguments</code> 对象，该对象在函数体内不存在。如果要用，可以使用 <code>rest</code> 参数代替。</li>
+<li>不可以使用 <code>yield</code> 命令，因此箭头函数不可以用作 <code>Generator</code> 函数。</li>
+<li>除了 <code>this</code> ,在箭头函数中不能存在的还有：<code>arguments</code>、<code>super</code>、<code>new.target</code></li>
+</ol>
+</blockquote>
+</li>
+</ul>
+<ul>
+<li><p>嵌套的箭头函数</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> insert = <span class="function">(<span class="params">value</span>) =&gt;</span> (&#123;<span class="attr">into</span>:<span class="function">(<span class="params">array</span>)=&gt;</span><span class="function">(<span class="params">&#123;after:(afterValue</span>)=&gt;</span>&#123;</span><br><span class="line">    array.splice(array.indexOf(afterValue)+<span class="number">1</span>,<span class="number">0</span>,value);</span><br><span class="line">    <span class="keyword">return</span> array;</span><br><span class="line">&#125;&#125;)&#125;);</span><br><span class="line"></span><br><span class="line">insert(<span class="number">2</span>).into([<span class="number">1</span>,<span class="number">3</span>]).after(<span class="number">1</span>);  <span class="comment">// [1,2,3]</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//部署管道机制 ： 前一个函数的输出 是 后一个函数的输入</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> pipeline = <span class="function">(<span class="params">...funcs</span>) =&gt;</span> val =&gt; funcs.reduce(<span class="function">(<span class="params">a,b</span>)=&gt;</span>b(a),val);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> plus1 = <span class="function"><span class="params">a</span> =&gt;</span> a+<span class="number">1</span>;</span><br><span class="line"><span class="keyword">const</span> mult2 = <span class="function"><span class="params">a</span> =&gt;</span> a*<span class="number">2</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> addThenMult = pipeline(plus1,mult2);</span><br><span class="line"></span><br><span class="line">addThenMult(<span class="number">5</span>); <span class="comment">// 12</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<ul>
+<li><p>双冒号运算符</p>
+<blockquote>
+<p>箭头函数可以绑定<code>this</code>对象，大大减少了显示绑定<code>this对象</code>的写法（<code>call</code>，<code>apply</code>，<code>bind</code>）。但是，箭头函数并不适用于所有场合，所以有一个提案，提出了<u>函数绑定</u>的运算符，用来取代<code>call</code>，<code>apply</code>，<code>bind</code>。</p>
+<p>函数绑定运算符是并排的俩个冒号（<code>：：</code>）,双冒号的左边是一个对象，右边是一个函数。该对象自动将左边的对象，作为上下文环境（即<code>this对象</code>），绑定到右边的函数上面。</p>
+</blockquote>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">bar::foo</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">bar.bind(foo);</span><br><span class="line"></span><br><span class="line">foo::bar(...arguments);</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line">bar.apply(foo,arguements);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>尾递归</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 斐波那契数列</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fibonacci</span>(<span class="params">n,ac1=<span class="number">1</span>,ac2=<span class="number">1</span></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;=<span class="number">1</span>) &#123;<span class="keyword">return</span> ac2&#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> fibonacci(n<span class="number">-1</span>,ac2,ac1+ac2);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
 
       
     </div>
@@ -876,7 +961,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript的一些不常见操作"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的一些不常见操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#toString-的操作"><span class="nav-number">1.1.</span> <span class="nav-text">toString()的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于typeof和instanceof使用的弊端"><span class="nav-number">1.2.</span> <span class="nav-text">对于typeof和instanceof使用的弊端</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NaN的一些使用"><span class="nav-number">1.3.</span> <span class="nav-text">NaN的一些使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#神奇的console-log"><span class="nav-number">1.4.</span> <span class="nav-text">神奇的console.log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Instanceof-和typeof-的实现原理"><span class="nav-number">1.5.</span> <span class="nav-text">Instanceof 和typeof 的实现原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性描述对象"><span class="nav-number">1.6.</span> <span class="nav-text">属性描述对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造函数和New命令"><span class="nav-number">1.7.</span> <span class="nav-text">构造函数和New命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定时器"><span class="nav-number">1.8.</span> <span class="nav-text">定时器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型和变量"><span class="nav-number">1.9.</span> <span class="nav-text">数据类型和变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组相关"><span class="nav-number">1.10.</span> <span class="nav-text">数组相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型-Map-和-Set"><span class="nav-number">1.11.</span> <span class="nav-text">数据类型 Map 和 Set</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量和作用域"><span class="nav-number">1.12.</span> <span class="nav-text">变量和作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量的解构和赋值"><span class="nav-number">1.13.</span> <span class="nav-text">变量的解构和赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#交换变量的值"><span class="nav-number">1.13.1.</span> <span class="nav-text">交换变量的值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#从函数返回多个值"><span class="nav-number">1.13.2.</span> <span class="nav-text">从函数返回多个值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#函数参数的定义"><span class="nav-number">1.13.3.</span> <span class="nav-text">函数参数的定义</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#提取JSON数据"><span class="nav-number">1.13.4.</span> <span class="nav-text">提取JSON数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#函数参数的默认值"><span class="nav-number">1.13.5.</span> <span class="nav-text">函数参数的默认值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#遍历Map结构"><span class="nav-number">1.13.6.</span> <span class="nav-text">遍历Map结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#输入模块的指定方法"><span class="nav-number">1.13.7.</span> <span class="nav-text">输入模块的指定方法</span></a></li></ol></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#JavaScript的一些不常见操作"><span class="nav-number">1.</span> <span class="nav-text">JavaScript的一些不常见操作</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#toString-的操作"><span class="nav-number">1.1.</span> <span class="nav-text">toString()的操作</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#对于typeof和instanceof使用的弊端"><span class="nav-number">1.2.</span> <span class="nav-text">对于typeof和instanceof使用的弊端</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#NaN的一些使用"><span class="nav-number">1.3.</span> <span class="nav-text">NaN的一些使用</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#神奇的console-log"><span class="nav-number">1.4.</span> <span class="nav-text">神奇的console.log</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#Instanceof-和typeof-的实现原理"><span class="nav-number">1.5.</span> <span class="nav-text">Instanceof 和typeof 的实现原理</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#属性描述对象"><span class="nav-number">1.6.</span> <span class="nav-text">属性描述对象</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#构造函数和New命令"><span class="nav-number">1.7.</span> <span class="nav-text">构造函数和New命令</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#定时器"><span class="nav-number">1.8.</span> <span class="nav-text">定时器</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型和变量"><span class="nav-number">1.9.</span> <span class="nav-text">数据类型和变量</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数组相关"><span class="nav-number">1.10.</span> <span class="nav-text">数组相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#数据类型-Map-和-Set"><span class="nav-number">1.11.</span> <span class="nav-text">数据类型 Map 和 Set</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量和作用域"><span class="nav-number">1.12.</span> <span class="nav-text">变量和作用域</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#变量的解构和赋值"><span class="nav-number">1.13.</span> <span class="nav-text">变量的解构和赋值</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#交换变量的值"><span class="nav-number">1.13.1.</span> <span class="nav-text">交换变量的值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#从函数返回多个值"><span class="nav-number">1.13.2.</span> <span class="nav-text">从函数返回多个值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#函数参数的定义"><span class="nav-number">1.13.3.</span> <span class="nav-text">函数参数的定义</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#提取JSON数据"><span class="nav-number">1.13.4.</span> <span class="nav-text">提取JSON数据</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#函数参数的默认值"><span class="nav-number">1.13.5.</span> <span class="nav-text">函数参数的默认值</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#遍历Map结构"><span class="nav-number">1.13.6.</span> <span class="nav-text">遍历Map结构</span></a></li><li class="nav-item nav-level-6"><a class="nav-link" href="#输入模块的指定方法"><span class="nav-number">1.13.7.</span> <span class="nav-text">输入模块的指定方法</span></a></li></ol></li><li class="nav-item nav-level-5"><a class="nav-link" href="#字符串相关"><span class="nav-number">1.14.</span> <span class="nav-text">字符串相关</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#函数相关"><span class="nav-number">1.15.</span> <span class="nav-text">函数相关</span></a></li></ol></li></ol></div>
             
 
           </div>
