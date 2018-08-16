@@ -91,7 +91,7 @@
 <meta property="og:site_name" content="Pan&#39;s Blog">
 <meta property="og:description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧,顺序难度不分前后，复习到那里记到哪了，没有章法就是章法。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-16T08:31:49.133Z">
+<meta property="og:updated_time" content="2018-08-16T08:34:21.066Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaScript 相关技巧总结之二">
 <meta name="twitter:description" content="JavaScript基础知识总结，包含了一些不常见的使用方法和技巧,顺序难度不分前后，复习到那里记到哪了，没有章法就是章法。">
@@ -709,25 +709,26 @@
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES5 的写法</span></span><br><span class="line"><span class="built_in">Math</span>.max.apply(<span class="literal">null</span>,[<span class="number">4</span>,<span class="number">17</span>,<span class="number">12</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的写法</span></span><br><span class="line"><span class="built_in">Math</span>.max(...[<span class="number">4</span>,<span class="number">17</span>,<span class="number">12</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// 等同于 </span></span><br><span class="line"><span class="built_in">Math</span>.max(<span class="number">4</span>,<span class="number">17</span>,<span class="number">12</span>)</span><br></pre></td></tr></table></figure>
 <p>扩展运算符的用途：</p>
-<ol>
+<ul>
 <li>复制数组</li>
-</ol>
+</ul>
 <blockquote>
 <p>数组是复合型数据，直接复制的话，只是复制了指向底层数据结构的指针，而不是克隆一个全新的数组。</p>
 </blockquote>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = a1;</span><br><span class="line"></span><br><span class="line">a2[<span class="number">0</span>] = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a1); <span class="comment">// [2,2]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// a2并不是a1的克隆，而是指向同一份数据的另一个指针。修改a2,会直接导致a1值的变化。</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 对于ES5只能用变通的方法拷贝数组</span></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = a1.concat();</span><br><span class="line"></span><br><span class="line">a2[<span class="number">0</span>] = <span class="number">2</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a1); <span class="comment">// [1,2]</span></span><br></pre></td></tr></table></figure>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ES6扩展运算符的数组复制使用</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a1 = [<span class="number">1</span>,<span class="number">2</span>];</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a2 = [...a1];</span><br></pre></td></tr></table></figure>
-<ol start="2">
-<li>合并数组</li>
-</ol>
-<blockquote>
-<p>扩展运算符为ES6提供了新的数组合并思路</p>
-</blockquote>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = [<span class="string">'hello'</span>,<span class="string">'world'</span>,<span class="string">'pan'</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = [<span class="number">1</span>,<span class="number">23</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> a3 = [<span class="literal">false</span>,<span class="literal">true</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5 的写法</span></span><br><span class="line">a1.concat(a2,a3);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的写法</span></span><br><span class="line">[...a1,...a2,...a3];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上都是浅拷贝</span></span><br></pre></td></tr></table></figure>
 </li>
 </ol>
-<pre><code>3. 与解构赋值结合
+<pre><code>- 合并数组
+
+&gt; 扩展运算符为ES6提供了新的数组合并思路
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> a1 = [<span class="string">'hello'</span>,<span class="string">'world'</span>,<span class="string">'pan'</span>];</span><br><span class="line"><span class="keyword">const</span> a2 = [<span class="number">1</span>,<span class="number">23</span>,<span class="number">4</span>,<span class="number">5</span>];</span><br><span class="line"><span class="keyword">const</span> a3 = [<span class="literal">false</span>,<span class="literal">true</span>];</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES5 的写法</span></span><br><span class="line">a1.concat(a2,a3);</span><br><span class="line"></span><br><span class="line"><span class="comment">// ES6 的写法</span></span><br><span class="line">[...a1,...a2,...a3];</span><br><span class="line"></span><br><span class="line"><span class="comment">// 以上都是浅拷贝</span></span><br></pre></td></tr></table></figure>
+
+
+
+- 与解构赋值结合
 
 &gt; 如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则会报错。
 
@@ -735,7 +736,7 @@
 
 
 
-4. 字符串
+- 字符串
 
 &gt; 将字符串转成数组
 
@@ -743,7 +744,7 @@
 
 
 
-5. `Iterator`接口，`Map`，`Set`，`Generator`函数
+- `Iterator`接口，`Map`，`Set`，`Generator`函数
 
 &gt; 任何`Iterator`接口的对象，都可以用扩展运算符转化为数组。
 
