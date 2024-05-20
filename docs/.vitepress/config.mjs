@@ -9,9 +9,7 @@ export default defineConfig({
     nav: [
       { text: 'Home', link: '/' },
       { text: 'Examples', link: '/markdown-examples' },
-      { text: 'Clock', link: '/public/js30/clock/index.html' },
-      { text: 'Kit', link: '/public/js30/kit/index.html' },
-      { text: 'FlexPanel', link: '/public/js30/flexPlans/index.html' }
+      { text: 'Clock', link: '/public/clock.html' },
     ],
 
     sidebar: [
@@ -26,6 +24,11 @@ export default defineConfig({
 
     socialLinks: [
       { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
-    ]
+    ],
+
+    footer: {
+      message: 'Released under the MIT License.',
+      copyright: 'Copyright © 2023-present Pan',
+    },
   }
 })

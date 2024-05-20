@@ -3,7 +3,7 @@
 layout: home
 
 hero:
-  name: "pan's blog project"
+  name: "pan's site"
   text: "a simple blog website"
   tagline: My great project tagline
   actions:
@@ -15,16 +15,9 @@ hero:
       link: /api-examples
 
 features:
-  - title: Kit
-    details: A simple demo for vitePress
-    link: /public/js30/kit/index.html
-    
   - title: Clock
+    icon: 🧭
     details: made by html, css, js
-    link: /public/js30/clock/index.html
-    
-  - title: FlexPanel
-    details: javascript + css + js
-    link: /public/js30/flexPlans/index.html
+    link: /public/clock.html
 ---
 
