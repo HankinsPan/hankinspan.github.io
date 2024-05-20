@@ -1,0 +1,11 @@
+{
+  "devDependencies": {
+    "vitepress": "^1.2.0"
+  },
+  "scripts": {
+    "docs:dev": "vitepress dev docs",
+    "docs:build": "vitepress build docs",
+    "docs:preview": "vitepress preview docs",
+    "deploy": "pnpm run docs:build &amp;&amp; git add docs/.vitepress/dist -f &amp;&amp; git commit -m 'Deploy to GitHub Pages' &amp;&amp; git push origin `git subtree split --prefix docs/.vitepress/dist main`:gh-pages --force"
+  }
+}
