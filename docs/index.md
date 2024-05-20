@@ -3,9 +3,13 @@
 layout: home
 
 hero:
-  name: "pan's site"
-  text: "a simple blog website"
-  tagline: My great project tagline
+  name: "Pan's Blog"
+  text: "Welcome to my blog!"
+  tagline: "Just write something simple to record what I have learned in daily life."
+  image:
+    src: /logo.png
+    alt: blog logo
+  
   actions:
     - theme: brand
       text: Markdown Examples
@@ -17,7 +21,6 @@ hero:
 features:
   - title: Clock
     icon: 🧭
-    details: made by html, css, js
-    link: /public/clock.html
+    details: 这是一个由html+JavaScript+css实现的时钟
 ---
 

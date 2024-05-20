@@ -1,30 +1,39 @@
-import { defineConfig } from 'vitepress'
+import {defineConfig} from 'vitepress'
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "pan's blog project",
-  description: "a simple blog website",
+  lang: 'zh-CN', // 'en-US
+  title: "pan",
+  description: "pan's blog",
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
+    logo: '/logo.png',
     nav: [
-      { text: 'Home', link: '/' },
-      { text: 'Examples', link: '/markdown-examples' },
-      { text: 'Clock', link: '/public/clock.html' },
+      {text: 'Home', link: '/'},
+      {text: 'Examples', link: '/markdown-examples'},
     ],
 
     sidebar: [
       {
         text: 'Examples',
         items: [
-          { text: 'Markdown Examples', link: '/markdown-examples' },
-          { text: 'Runtime API Examples', link: '/api-examples' }
+          {text: 'Markdown Examples', link: '/markdown-examples'},
+          {text: 'Runtime API Examples', link: '/api-examples'}
         ]
       }
     ],
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vuejs/vitepress' }
+      {icon: 'github', link: 'https://github.com/hviwen'}
     ],
+
+    lastUpdated: {
+      text: 'Updated at',
+      formatOptions: {
+        dateStyle: 'full',
+        timeStyle: 'medium'
+      }
+    },
 
     footer: {
       message: 'Released under the MIT License.',
