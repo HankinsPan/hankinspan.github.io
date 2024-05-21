@@ -24,3 +24,4 @@ features:
     details: 这是一个由html+JavaScript+css实现的时钟
 ---
 
+<a href="/pages/js30/clock/index.html" target="_blank">Link to clock.html</a>
