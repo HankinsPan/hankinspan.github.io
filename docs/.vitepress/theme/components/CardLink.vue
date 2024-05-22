@@ -67,10 +67,11 @@ const hover = ref(false)
   height: 100%;
   background-color: var(--vp-c-bg-soft);
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  margin: 20px 0;
+  margin: 10px 0;
   border-radius: 10px;
+  cursor: pointer;
+  min-width: 384px;
   unicode-bidi: isolate;
-  min-width: 480px;
   transition: box-shadow 0.3s, background-color 0.3s, color 0.3s;
 
   .link_icon {
