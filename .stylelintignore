@@ -1,0 +1,9 @@
+/.husky/*
+/.vscode/*
+/bin
+/node_modules/*
+/html/*
+/dist/*
+/public/*
+/scripts/*
+/backup/*

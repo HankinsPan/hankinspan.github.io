@@ -1,0 +1,265 @@
+@import 'https://cdn.jsdelivr.net/npm/keyrune@latest/css/keyrune.css';
+
+@import 'vars';
+
+// Top level HTML
+html {
+  min-width: 375px;
+}
+
+// Next/Prev buttons fix
+a {
+  &.pager-link {
+    &:hover {
+      text-decoration: none !important;
+    }
+
+    .doc-badge {
+      display: none;
+    }
+  }
+}
+
+// Code styles - Vitepress has a lot of specific rules to override
+.vp-doc div[class*="language-"],
+code,
+pre {
+  border-radius: var(--common-radius) !important;
+  line-height: 1.25rem;
+  font-weight: 600;
+  word-break: break-word;
+  margin-left: auto;
+  margin-right: auto;
+}
+pre {
+  padding: 1rem !important;
+  margin-bottom: 1rem;
+  overflow-x: scroll;
+
+  code {
+    padding: 0;
+  }
+}
+div[class*="language-"],
+code {
+  background-color: var(--code-bg-color) !important;
+}
+code {
+  color: var(--code-text-color) !important;
+  padding: 0.25rem 0.5rem !important;
+  font-size: 12px !important;
+}
+.lang {
+  top: 0rem !important;
+  right: 0.45rem !important;
+}
+
+.custom-block {
+  a:link,
+  a:visited,
+  a:active,
+  a:hover {
+    color: var(--accent-color);
+  }
+}
+
+// CTA
+.cta-btn {
+  display: inline-block;
+  vertical-align: center;
+  padding: 0.75rem 1rem;
+  border-radius: var(--common-radius);
+  border: 1px solid var(--accent-color);
+  text-decoration: none;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+  text-decoration: none !important;
+  background-color: transparent;
+  color: var(--accent-color);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.25s;
+
+  &:hover,
+  &:focus {
+    color: var(--white-color);
+    background-color: var(--accent-color);
+  }
+
+  &:focus {
+    outline: 0;
+  }
+}
+
+// Navbar
+.VPNavBar {
+  .title {
+    display: flex;
+  }
+}
+.content-body {
+  transition: none !important;
+}
+
+// Appearance/Social links overlay on mobile
+.VPNavScreenAppearance {
+  border-radius: var(--common-radius) !important;
+}
+
+// TOC/Outline
+.VPDocOutlineDropdown button {
+  border-color: var(--accent-color) !important;
+  background-color: transparent !important;
+  color: var(--accent-color) !important;
+  font-weight: bold !important;
+  transition: all 0.25s;
+
+  &:hover {
+    background-color: var(--accent-color) !important;
+    color: var(--white-color) !important;
+  }
+}
+
+// Content
+.VPDoc {
+  // Fix headings
+
+  h1 {
+    display: inline-flex;
+    align-items: center;
+  }
+  h4 {
+    margin-top: 1rem;
+  }
+
+  // Fix links
+  a {
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  // Fix edit link colors
+  .edit-link-button {
+    color: var(--vp-c-text-2);
+
+    &:hover {
+      color: var(--vp-c-text-1);
+    }
+  }
+
+  // Aside/Outline
+  .aside {
+    .outline-link {
+      cursor: pointer;
+
+      &.active {
+        color: var(--vp-c-brand);
+
+        &:hover {
+          color: var(--vp-c-brand);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+
+  // Images for links
+  .link {
+    &-inline-image {
+      display: inline-flex;
+      padding-right: 1.5rem;
+      background-size: 1rem 1rem;
+      background-position: right center;
+      background-repeat: no-repeat;
+
+      &.github {
+        background-image: url('/assets/images/icon-github.svg');
+      }
+    }
+  }
+
+  .VPBadge {
+    margin-left: 0.5rem;
+    border-width: 2px !important;
+    border-radius: var(--common-radius);
+    padding: 0 0.5rem;
+    font-weight: bold !important;
+  }
+
+  // Blockquotes
+  blockquote {
+    border-radius: var(--common-radius);
+    border: 1px solid var(--vp-c-divider);
+    background-color: var(--vp-sidebar-bg-color);
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+
+    .VPBadge {
+      float: right;
+    }
+
+    h3 {
+      margin-top: 0;
+      font-size: 1rem;
+    }
+
+    p {
+      font-size: 14px;
+      margin-top: 0.5rem;
+      font-weight: 500;
+    }
+
+    ul {
+      li {
+        font-size: 14px;
+        color: var(--vp-c-text-2);
+      }
+    }
+  }
+}
+
+// Dark themeing
+html.dark {
+  .VPSwitch {
+    .icon {
+      background-color: var(--dark-color);
+      border-color: var(--vp-c-divider);
+    }
+  }
+}
+
+@media (max-width: 399px) {
+  .VPDoc {
+    blockquote {
+      h3 {
+        .header-anchor {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .VPNavBarSearch {
+    flex-grow: 0;
+    padding-right: 1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .VPDoc {
+    // Hide TOC for desktop in favor of aside
+    #on-this-page,
+    #model-index {
+      &,
+      & + .table-of-contents {
+        display: none;
+      }
+    }
+  }
+}
