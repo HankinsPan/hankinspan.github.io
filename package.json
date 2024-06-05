@@ -31,11 +31,11 @@
   "scripts": {
     "prepare": "husky",
     "lint-staged": "lint-staged",
-    "docs:dev": "vitepress dev docs",
     "cm": "git-cz",
     "commitlint": "commitlint -e -V",
     "stylelint:fix": "stylelint 'docs/**/*.{html,vue,css,scss}' --fix",
     "stylelint:out": "stylelint 'docs/**/*.{html,vue,css,scss}' -o .stylelint-output.txt -f string",
+    "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
   },
