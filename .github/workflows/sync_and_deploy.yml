@@ -2,21 +2,19 @@ name: Sync and Deploy Workflow
 
 on:
   schedule:
-    - cron: '0 12 * * *'
-
+    - cron: '0 11 20 * *'
 
 jobs:
   sync-and-deploy:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
-          uses: pnpm/action-setup@v3
+        uses: actions/checkout@v2
 
       - name: Setup Node
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v2.0.1
+        with:
+          node-version: latest
 
       - name: Install pnpm
         run: npm install -g pnpm  # 安装 pnpm
@@ -25,6 +23,54 @@ jobs:
         run: |
           curl -L https://github.com/monocytess/simple/archive/refs/heads/master.zip > repo.zip
           unzip repo.zip
+          rm repo.zip
 
       - name: Sync files
         run: rsync -av --checksum --delete simple-master/src/js30 docs/public/pages/
+
+      - name: Modify Html files
+        run: |
+          cd docs/public/pages/js30
+          for file in *.html; do
+            sed -i 's|<link rel="icon".*|<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">\n  <link rel="stylesheet" href="./style.css">|g' $file
+            sed -i '0,/<script>/s|<script>.*</script>|<script>\n    function adaptBackgroundImage() {\n      const windowWidth = window.innerWidth\n      const windowHeight = window.innerHeight\n\n      const aspectRatio = windowWidth / windowHeight\n      const background = document.querySelector(\'.background\')\n\n      if (aspectRatio > 1.75) {\n        background.style.backgroundImage = \'url("/assets/images/landscape_1x2.jpg")\'\n      } else if (aspectRatio > 0.80) {\n        background.style.backgroundImage = \'url("/assets/images/portrait_1x1.jpg")\'\n      } else {\n        background.style.backgroundImage = \'url("/assets/images/portrait_2x1.jpg")\'\n      }\n    }\n\n    window.addEventListener(\'resize\', adaptBackgroundImage);\n\n    window.addEventListener(\'DOMContentLoaded\', function () {\n      window.dispatchEvent(new Event(\'resize\'))\n    })\n  </script>|' $file
+          done
+
+      - name: Modify Css files
+        run: |
+          cd docs/public/pages/js30
+          for file in *.css; do
+            sed -i 's|@import "../../css/js30.css";|@import "/assets/css/js30.base.css";|g' $file
+          done
+
+      - name:  Add CardLink to docs/index.md
+        run: |
+          echo "<Flow>" > temp.md
+          for dir in docs/public/pages/*; do
+            if [ -d "$dir" ]; then
+              folder_name=$(basename $dir)
+              if ! grep -q "$folder_name" docs/index.md; then
+                description=$(grep -oP '(?<=<meta name="description" content=").*?(?=">)' $dir/index.html)
+                echo "<CardLink" >> temp.md
+                echo "  icon=\"$(shuf -n 1 -e 🧭 🥁 🎸 🎹 🎺 🎻 🎷)\"" >> temp.md
+                echo "  title=\"$folder_name\"" >> temp.md
+                echo "  description=\"$description\"" >> temp.md
+                echo "  href=\"/pages/js30/$folder_name/index.html\">" >> temp.md
+                echo "</CardLink>" >> temp.md
+              fi
+            fi
+          done
+          echo "</Flow>" >> temp.md
+          sed -i '/<Flow>/,/<\/Flow>/d' docs/index.md
+          cat temp.md >> docs/index.md
+          rm temp.md
+
+      - name: Commit and push changes
+        run: |
+          git config --global user.name 'GitHub Actions'
+          git config --global user.email 'github-actions@github.com'
+          git add .
+          git commit -m "Automated changes by GitHub Actions"
+          git push https://${GH_TOKEN}@github.com/<owner>/<repo>.git
+        env:
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
