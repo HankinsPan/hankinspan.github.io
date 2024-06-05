@@ -1,8 +1,21 @@
 name: Sync and Deploy Workflow
 
 on:
-  schedule:
-    - cron: '16 4 * * *'
+#  schedule:
+#    - cron: '30 4 * * *'
+  push:
+    branches: [ master ]
+  # 允许你从 Actions 选项卡手动运行此工作流程
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+    group: sync_and_deploy
+    cancel-in-progress: false
 
 jobs:
   sync-and-deploy:
