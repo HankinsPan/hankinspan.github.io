@@ -27,6 +27,11 @@ jobs:
           fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
           uses: pnpm/action-setup@v3
 
+      - name: Install jq
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y jq
+
       - name: Setup Node
         uses: actions/setup-node@v4
 
@@ -71,27 +76,20 @@ jobs:
           cat temp.md >> docs/index.md
           rm temp.md
 
-      - name: Create or check remote branch
-        run: |
-          git fetch origin
-          if ! git rev-parse --verify origin/blog/sync-auto > /dev/null 2>&1; then
-            git checkout -b blog/sync-auto
-            git push -u origin blog/sync-auto
-          fi
-
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          # 检查远程是否存在 blog/sync-auto 分支
-          if git ls-remote --heads origin blog/sync-auto > /dev/null 2>&1; then
-            # 拉取远程分支的最新更改
-            git fetch origin blog/sync-auto
-            # 与远程分支合并
-            git rebase origin/blog/sync-auto
-          fi
+          
+          # 获取Pull Request编号
+          pr_number=$(jq -r '.pull_request.number' $GITHUB_EVENT_PATH)
+          # 创建新的分支名称
+          branch_name="blog/sync-auto${pr_number}"
+          # 切换到新的分支
+          git checkout -b $branch_name
+          
           git add .
           git commit -m "Automated changes by GitHub Actions"
-          git push https://${GITHUB_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync-auto -f
+          git push -u https://${GITHUB_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:$branch_name  -f
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
