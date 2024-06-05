@@ -40,7 +40,9 @@ jobs:
           rm repo.zip
 
       - name: Sync files
-        run: rsync -av --checksum --delete simple-master/src/js30 docs/public/pages/
+        run: |
+          rsync -av --checksum --delete simple-master/src/js30 docs/public/pages/
+          rm -rf simple-master
 
       - name: Modify Html files
         run: |
@@ -82,6 +84,6 @@ jobs:
           git config --global user.email 'github-actions@github.com'
           git add .
           git commit -m "Automated changes by GitHub Actions"
-          git push https://${GH_TOKEN}@github.com/hviwen.github.io.git
+          git push https://${GH_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
