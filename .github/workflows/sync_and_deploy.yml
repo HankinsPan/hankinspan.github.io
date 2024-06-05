@@ -21,13 +21,14 @@ jobs:
   sync-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+          uses: pnpm/action-setup@v3
 
       - name: Setup Node
-        uses: actions/setup-node@v2.0.1
-        with:
-          node-version: latest
+        uses: actions/setup-node@v4
 
       - name: Install pnpm
         run: npm install -g pnpm  # 安装 pnpm
