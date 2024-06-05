@@ -50,6 +50,7 @@ jobs:
       - name: Modify Html files
         run: |
           find docs/public/pages/js30 -type f -name "*.html" -exec sed -i '/<head>/,/<\/head>/ { s|\./\./\./assets|/assets|g; s|\.\./\.\./common/js30\.base\.js|/assets/common/js30.base.js|g; }' {} \;
+          find docs/public/pages/js30 -type f -name "*.html" -exec sed -i '/<head>/,/<\/head>/ { s|href="\./\./\./assets|href="/assets|g; }' {} \;
 
       - name: Modify Css files
         run: |
@@ -57,25 +58,26 @@ jobs:
 
       - name:  Add CardLink to docs/index.md
         run: |
-          echo "<Flow>" > temp.md
-          for dir in docs/public/pages/*; do
+          # 保存原始的<Flow>标签内容
+          grep -zoP '(?<=<Flow>).*?(?=</Flow>)' docs/index.md > flow_content.md
+          # 将新的CardLink追加到原始的<Flow>内容之后
+          echo "" >> flow_content.md
+          for dir in docs/public/pages/js30/*; do
             if [ -d "$dir" ]; then
               folder_name=$(basename $dir)
-              if ! grep -q "$folder_name" docs/index.md; then
-                description=$(grep -oP '(?<=<meta name="description" content=").*?(?=">)' $dir/index.html)
-                echo "<CardLink" >> temp.md
-                echo "  icon=\"$(shuf -n 1 -e 🧭 🥁 🎸 🎹 🎺 🎻 🎷)\"" >> temp.md
-                echo "  title=\"$folder_name\"" >> temp.md
-                echo "  description=\"$description\"" >> temp.md
-                echo "  href=\"/pages/js30/$folder_name/index.html\">" >> temp.md
-                echo "</CardLink>" >> temp.md
-              fi
+              description=$(grep -oP '(?<=<meta name="description" content=").*?(?=">)' $dir/index.html)
+              echo "<CardLink" >> flow_content.md
+              echo "  icon=\"$(shuf -n 1 -e 🧭 🥁 🎸 🎹 🎺 🎻 🎷)\"" >> flow_content.md
+              echo "  title=\"$folder_name\"" >> flow_content.md
+              echo "  description=\"$description\"" >> flow_content.md
+              echo "  href=\"/pages/js30/$folder_name/index.html\">" >> flow_content.md
+              echo "</CardLink>" >> flow_content.md
             fi
           done
-          echo "</Flow>" >> temp.md
-          sed -i '/<Flow>/,/<\/Flow>/d' docs/index.md
-          cat temp.md >> docs/index.md
-          rm temp.md
+          echo "</Flow>" >> flow_content.md
+          # 替换index.md中的<Flow>内容
+          sed -i '/<Flow>/,/<\/Flow>/c\' flow_content.md docs/index.md
+          rm flow_content.md
 
       - name: Commit and push changes
         run: |
