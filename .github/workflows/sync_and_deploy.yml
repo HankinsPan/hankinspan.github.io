@@ -43,11 +43,7 @@ jobs:
 
       - name: Modify Html files
         run: |
-          find docs/public/pages/js30 -type f -name "*.html" -exec sed -i '/<head>/,/<\/head>/ s|\./\./\./assets|/assets|g' {} \;
-
-      - name: Replace image paths in JS files
-        run: |
-          find docs/public/pages/js30 -type f -name "*.js" -exec  sed -i 's|\./\./\./images/|/assets/images/|g' {} \;
+          find docs/public/pages/js30 -type f -name "*.html" -exec sed -i '/<head>/,/<\/head>/ { s|\./\./\./assets|/assets|g; s|\.\./\.\./common/js30\.base\.js|/assets/common/js30.base.js|g; }' {} \;
 
       - name: Modify Css files
         run: |
