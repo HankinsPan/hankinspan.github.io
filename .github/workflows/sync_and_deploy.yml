@@ -84,6 +84,6 @@ jobs:
           git config --global user.email 'github-actions@github.com'
           git add .
           git commit -m "Automated changes by GitHub Actions"
-          git push https://${GH_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync
+          git push https://${GH_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync-auto
         env:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
