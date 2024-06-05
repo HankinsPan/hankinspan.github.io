@@ -75,10 +75,13 @@ jobs:
         run: |
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-          # 拉取远程分支的最新更改
-          git fetch origin blog/sync-auto
-          # 与远程分支合并
-          git rebase origin/blog/sync-auto
+          # 检查远程是否存在 blog/sync-auto 分支
+          if git ls-remote --heads origin blog/sync-auto > /dev/null 2>&1; then
+            # 拉取远程分支的最新更改
+            git fetch origin blog/sync-auto
+            # 与远程分支合并
+            git rebase origin/blog/sync-auto
+          fi
           git add .
           git commit -m "Automated changes by GitHub Actions"
           git push https://${GITHUB_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync-auto -f
