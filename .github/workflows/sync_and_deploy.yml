@@ -58,25 +58,32 @@ jobs:
 
       - name:  Add CardLink to docs/index.md
         run: |
-          # 保存原始的<Flow>标签内容
-          grep -zoP '(?<=<Flow>).*?(?=</Flow>)' docs/index.md > flow_content.md
-          # 将新的CardLink追加到原始的<Flow>内容之后
-          echo "" >> flow_content.md
-          for dir in docs/public/pages/js30/*; do
-            if [ -d "$dir" ]; then
-              folder_name=$(basename $dir)
-              description=$(grep -oP '(?<=<meta name="description" content=").*?(?=">)' $dir/index.html)
-              echo "<CardLink" >> flow_content.md
-              echo "  icon=\"$(shuf -n 1 -e 🧭 🥁 🎸 🎹 🎺 🎻 🎷)\"" >> flow_content.md
-              echo "  title=\"$folder_name\"" >> flow_content.md
-              echo "  description=\"$description\"" >> flow_content.md
-              echo "  href=\"/pages/js30/$folder_name/index.html\">" >> flow_content.md
-              echo "</CardLink>" >> flow_content.md
-            fi
-          done
-          echo "</Flow>" >> flow_content.md
-          # 替换index.md中的<Flow>内容
-          sed -i '/<Flow>/,/<\/Flow>/c\' flow_content.md docs/index.md
+          # 检查<Flow>标签是否存在
+          if grep -q '<Flow>' docs/index.md; then
+            # 保存原始的<Flow>标签内容
+            grep -zoP '(?<=<Flow>).*?(?=</Flow>)' docs/index.md > flow_content.md
+
+            # 将新的CardLink追加到原始的<Flow>内容之后
+            echo "" >> flow_content.md
+            for dir in docs/public/pages/js30/*; do
+              if [ -d "$dir" ]; then
+                folder_name=$(basename $dir)
+                description=$(grep -oP '(?<=<meta name="description" content=").*?(?=">)' $dir/index.html)
+                echo "<CardLink" >> flow_content.md
+                echo "  icon=\"$(shuf -n 1 -e 🧭 🥁 🎸 🎹 🎺 🎻 🎷)\"" >> flow_content.md
+                echo "  title=\"$folder_name\"" >> flow_content.md
+                echo "  description=\"$description\"" >> flow_content.md
+                echo "  href=\"/pages/js30/$folder_name/index.html\">" >> flow_content.md
+                echo "</CardLink>" >> flow_content.md
+              fi
+            done
+            echo "</Flow>" >> flow_content.md
+          
+            # 替换index.md中的<Flow>内容
+            sed -i '/<Flow>/,/<\/Flow>/c\' flow_content.md docs/index.md
+          else
+            echo "<Flow>标签未找到，无法进行修改</Flow>"
+          fi
           rm flow_content.md
 
       - name: Commit and push changes
