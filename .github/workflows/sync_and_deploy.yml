@@ -44,24 +44,15 @@ jobs:
 
       - name: Modify Html files
         run: |
-          cd docs/public/pages/js30
-          for file in *.html; do
-            sed -i 's|<link rel="icon".*|<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon.png">\n  <link rel="stylesheet" href="./style.css">|g' $file
-          done
+          find docs/public/pages/js30 -type f -name "*.html" -exec sed -i '/<head>/,/<\/head>/ s|\./\./\./assets|/assets|g' {} \;
 
       - name: Replace image paths in JS files
         run: |
-          cd docs/public/pages/js30
-          for file in *.js; do
-            sed -i 's|\./\./\./images/|/assets/images/|g' $file
-          done
+          find docs/public/pages/js30 -type f -name "*.js" -exec  sed -i 's|\./\./\./images/|/assets/images/|g' {} \;
 
       - name: Modify Css files
         run: |
-          cd docs/public/pages/js30
-          for file in *.css; do
-            sed -i 's|@import "../../css/js30.css";|@import "/assets/css/js30.base.css";|g' $file
-          done
+          find docs/public/pages/js30 -type f -name "*.css" -exec  sed -i 's|@import "../../css/js30.css";|@import "/assets/css/js30.base.css";|g' {} \;
 
       - name:  Add CardLink to docs/index.md
         run: |
