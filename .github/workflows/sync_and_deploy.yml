@@ -81,6 +81,6 @@ jobs:
           git rebase origin/blog/sync-auto
           git add .
           git commit -m "Automated changes by GitHub Actions"
-          git push https://${GITHUB_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync-auto
+          git push https://${GITHUB_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync-auto -f
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
