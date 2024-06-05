@@ -3,8 +3,10 @@ name: Sync and Deploy Workflow
 on:
 #  schedule:
 #    - cron: '30 4 * * *'
-  push:
-    branches: [ master ]
+#  push:
+#    branches: [ master ]
+  pull_request:
+    types: [ closed ]
   # 允许你从 Actions 选项卡手动运行此工作流程
   workflow_dispatch:
 
@@ -24,8 +26,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
-          uses: pnpm/action-setup@v3
+          fetch-depth: 0
 
       - name: Install jq
         run: |
@@ -81,15 +82,21 @@ jobs:
           git config --global user.name 'github-actions[bot]'
           git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           
-          # 获取Pull Request编号
-          pr_number=$(jq -r '.pull_request.number' $GITHUB_EVENT_PATH)
-          # 创建新的分支名称
-          branch_name="blog/sync-auto${pr_number}"
-          # 切换到新的分支
-          git checkout -b $branch_name
+          # 检查事件是否为Pull Request
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            # 获取Pull Request编号
+            pr_number=$(jq -r '.pull_request.number' $GITHUB_EVENT_PATH)
+            # 创建新的分支名称
+            branch_name="blog/sync-auto${pr_number}"
+            # 切换到新的分支
+            git checkout -b $branch_name
+          fi
           
           git add .
           git commit -m "Automated changes by GitHub Actions"
-          git push -u https://${GITHUB_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:$branch_name  -f
+          # 如果是Pull Request，推送更改
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            git push -u https://${GITHUB_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:$branch_name -f
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
