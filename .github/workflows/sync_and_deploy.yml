@@ -9,7 +9,7 @@ on:
   workflow_dispatch:
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -29,9 +29,6 @@ jobs:
 
       - name: Setup Node
         uses: actions/setup-node@v4
-
-      - name: Install pnpm
-        run: npm install -g pnpm  # 安装 pnpm
 
       - name: Download and unzip repository
         run: |
@@ -80,10 +77,10 @@ jobs:
 
       - name: Commit and push changes
         run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'github-actions@github.com'
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
           git add .
           git commit -m "Automated changes by GitHub Actions"
-          git push https://${GH_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync-auto
+          git push https://${GITHUB_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync-auto
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
