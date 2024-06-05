@@ -1,0 +1,30 @@
+name: Sync and Deploy Workflow
+
+on:
+  schedule:
+    - cron: '0 12 * * *'
+
+
+jobs:
+  sync-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # 如果未启用 lastUpdated，则不需要
+          uses: pnpm/action-setup@v3
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+
+      - name: Install pnpm
+        run: npm install -g pnpm  # 安装 pnpm
+
+      - name: Download and unzip repository
+        run: |
+          curl -L https://github.com/monocytess/simple/archive/refs/heads/master.zip > repo.zip
+          unzip repo.zip
+
+      - name: Sync files
+        run: rsync -av --checksum --delete simple-master/src/js30 docs/public/pages/
