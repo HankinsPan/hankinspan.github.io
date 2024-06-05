@@ -71,6 +71,14 @@ jobs:
           cat temp.md >> docs/index.md
           rm temp.md
 
+      - name: Create or check remote branch
+        run: |
+          git fetch origin
+          if ! git rev-parse --verify origin/blog/sync-auto > /dev/null 2>&1; then
+            git checkout -b blog/sync-auto
+            git push -u origin blog/sync-auto
+          fi
+
       - name: Commit and push changes
         run: |
           git config --global user.name 'github-actions[bot]'
