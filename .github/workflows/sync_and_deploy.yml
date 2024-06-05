@@ -78,10 +78,9 @@ jobs:
           # 拉取远程分支的最新更改
           git fetch origin blog/sync-auto
           # 与远程分支合并
-          git merge --no-edit origin/blog/sync-auto
-          # git rebase origin/blog/sync-auto
+          git rebase origin/blog/sync-auto
           git add .
           git commit -m "Automated changes by GitHub Actions"
-          git push https://${GITHUB_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync-auto
+          git push https://${GITHUB_TOKEN}@github.com/hviwen/hviwen.github.io.git HEAD:blog/sync-auto -f
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
