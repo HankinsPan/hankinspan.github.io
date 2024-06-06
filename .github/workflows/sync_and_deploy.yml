@@ -49,14 +49,17 @@ jobs:
 
       - name: Modify Html files
         run: |
-          find docs/public/pages/js30 -type f -name "index.html" -print0 | while IFS= read -r -d '' file; do
-            sed -i '
-              /<head>/,/<\/head>/ {
-                s|href="\./\./\./assets|href="/assets|g;
+          # 查找 docs/public/pages/js30 目录下的所有子目录
+          find docs/public/pages/js30 -mindepth 1 -type d -print0 | while IFS= read -r -d '' subdir; do
+            # 查找每个子目录中的所有名为 "index.html" 的文件
+            find "$subdir" -type f -name "index.html" -print0 | while IFS= read -r -d '' file; do
+              sed -i'' -e '
+                /<head>/,/<\/head>/ {
                 s|href="\.\./\.\./assets|href="/assets|g;
                 s|src="\.\./\.\./common|src="/assets/common|g;
-              }
-            ' "$file"
+                }
+              ' "$file"
+            done
           done
 
       - name: Modify Css files
@@ -107,6 +110,10 @@ jobs:
             echo "<Flow>标签未找到，无法进行修改" >> docs/index.md
           fi
           rm flow_content.md
+
+      - name: Remove empty lines between <Flow> and <CardLink>
+        run: |
+          sed -i '/<Flow>/,/<CardLink>/ {/^\s*$/d}' docs/index.md
 
       - name: Commit and push changes
         run: |
