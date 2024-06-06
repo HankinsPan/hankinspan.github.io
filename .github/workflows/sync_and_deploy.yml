@@ -49,13 +49,15 @@ jobs:
 
       - name: Modify Html files
         run: |
-          find docs/public/pages/js30 -type f -name "*.html" -exec sed -i '
-            /<head>/,/<\/head>/ {
-              s|href="\./\./\./assets|href="/assets|g;
-              s|href="\.\./\.\./assets|href="/assets|g;
-              s|src="\.\./\.\./common/js30\.base\.js|src="/assets/common/js30.base.js|g;
-            }
-          ' {} \;
+          find docs/public/pages/js30 -type f -name "index.html" -print0 | while IFS= read -r -d '' file; do
+            sed -i '
+              /<head>/,/<\/head>/ {
+                s|href="\./\./\./assets|href="/assets|g;
+                s|href="\.\./\.\./assets|href="/assets|g;
+                s|src="\.\./\.\./common|src="/assets/common|g;
+              }
+            ' "$file"
+          done
 
       - name: Modify Css files
         run: |
@@ -63,43 +65,48 @@ jobs:
 
       - name: Add CardLink to docs/index.md
         run: |
-          # 创建一个临时文件保存新的 <Flow> 标签内容
-          echo "<Flow>" > temp_flow_content.md
-          for dir in docs/public/pages/js30/*; do
-            if [ -d "$dir" ]; then
-              folder_name=$(basename "$dir")
-              description=$(grep -oP '(?<=<meta name="description" content=").*?(?=">)' "$dir/index.html")
-              echo "<CardLink" >> temp_flow_content.md
-              echo "  icon=\"$(shuf -n 1 -e 🧭 🥁 🎸 🎹 🎺 🎻 🎷)\"" >> temp_flow_content.md
-              echo "  title=\"$folder_name\"" >> temp_flow_content.md
-              echo "  description=\"$description\"" >> temp_flow_content.md
-              echo "  href=\"/pages/js30/$folder_name/index.html\">" >> temp_flow_content.md
-              echo "</CardLink>" >> temp_flow_content.md
-            fi
-          done
-          echo "</Flow>" >> temp_flow_content.md
+          # 检查<Flow>标签是否存在
+          if grep -q '<Flow>' docs/index.md; then
+            # 保存原始的<Flow>标签内容
+            grep -zoP '(?<=<Flow>).*?(?=</Flow>)' docs/index.md > flow_content.md || echo "" > flow_content.md
+          
+            # 将新的CardLink追加到原始的<Flow>内容之后
+            echo "" >> flow_content.md
+            for dir in docs/public/pages/js30/*; do
+              if [ -d "$dir" ]; then
+                folder_name=$(basename "$dir")
+                description=$(grep -oP '(?<=<meta name="description" content=").*?(?=">)' "$dir/index.html")
+                echo "<CardLink" >> flow_content.md
+                echo "  icon=\"$(shuf -n 1 -e 🧭 🥁 🎸 🎹 🎺 🎻 🎷)\"" >> flow_content.md
+                echo "  title=\"$folder_name\"" >> flow_content.md
+                echo "  description=\"$description\"" >> flow_content.md
+                echo "  href=\"/pages/js30/$folder_name/index.html\">" >> flow_content.md
+                echo "</CardLink>" >> flow_content.md
+              fi
+            done
+            echo "</Flow>" >> flow_content.md
 
-          # 使用 awk 替换 index.md 中的 <Flow> 内容
-          awk '
-          BEGIN { RS = ORS = "" }
-          /<Flow>/ { 
-            sub(/<Flow>.*<\/Flow>/, ""); 
-            print 
-          }
-          { print }
-          ' docs/index.md > docs/index_temp.md
+            # 去掉 <Flow> 与第一个 <CardLink> 之间的空格
+            sed -i '/<Flow>/,/<CardLink>/ {/^\s*$/d}' flow_content.md
 
-          # 将新的 <Flow> 标签内容插入到正确的位置
-          awk '
-          { print }
-          /<Flow>/ {
-            while ((getline line < "temp_flow_content.md") > 0) 
-              print line
-          }
-          ' docs/index_temp.md > docs/index.md
-
-          # 删除临时文件
-          rm temp_flow_content.md docs/index_temp.md
+            # 使用 `awk` 替换 index.md 中的 <Flow> 内容
+            awk '{
+              if ($0 ~ /<Flow>/) {
+                print $0;
+                while (getline line < "flow_content.md") {
+                  print line
+                }
+                while ($0 !~ /<\/Flow>/) {
+                  getline
+                }
+              } else {
+                print $0
+              }
+            }' docs/index.md > docs/index_temp.md && mv docs/index_temp.md docs/index.md
+          else
+            echo "<Flow>标签未找到，无法进行修改" >> docs/index.md
+          fi
+          rm flow_content.md
 
       - name: Commit and push changes
         run: |
