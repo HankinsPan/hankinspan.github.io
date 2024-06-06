@@ -1,10 +1,10 @@
 name: Sync and Deploy Workflow
 
 on:
-#  schedule:
-#    - cron: '30 4 * * *'
-#  push:
-#    branches: [ master ]
+  #  schedule:
+  #    - cron: '30 4 * * *'
+  #  push:
+  #    branches: [ master ]
   pull_request:
     types: [ closed ]
   # 允许你从 Actions 选项卡手动运行此工作流程
@@ -16,8 +16,8 @@ permissions:
   id-token: write
 
 concurrency:
-    group: sync_and_deploy
-    cancel-in-progress: false
+  group: sync_and_deploy
+  cancel-in-progress: false
 
 jobs:
   sync-and-deploy:
@@ -56,19 +56,19 @@ jobs:
         run: |
           find docs/public/pages/js30 -type f -name "*.css" -exec  sed -i 's|@import "../../css/js30.css";|@import "/assets/css/js30.base.css";|g' {} \;
 
-      - name:  Add CardLink to docs/index.md
+      - name: Add CardLink to docs/index.md
         run: |
           # 检查<Flow>标签是否存在
           if grep -q '<Flow>' docs/index.md; then
             # 保存原始的<Flow>标签内容
-            grep -zoP '(?<=<Flow>).*?(?=</Flow>)' docs/index.md > flow_content.md
+            grep -zoP '(?<=<Flow>).*?(?=</Flow>)' docs/index.md > flow_content.md || echo "" > flow_content.md
 
             # 将新的CardLink追加到原始的<Flow>内容之后
             echo "" >> flow_content.md
             for dir in docs/public/pages/js30/*; do
               if [ -d "$dir" ]; then
-                folder_name=$(basename $dir)
-                description=$(grep -oP '(?<=<meta name="description" content=").*?(?=">)' $dir/index.html)
+                folder_name=$(basename "$dir")
+                description=$(grep -oP '(?<=<meta name="description" content=").*?(?=">)' "$dir/index.html")
                 echo "<CardLink" >> flow_content.md
                 echo "  icon=\"$(shuf -n 1 -e 🧭 🥁 🎸 🎹 🎺 🎻 🎷)\"" >> flow_content.md
                 echo "  title=\"$folder_name\"" >> flow_content.md
@@ -78,11 +78,23 @@ jobs:
               fi
             done
             echo "</Flow>" >> flow_content.md
-          
-            # 替换index.md中的<Flow>内容
-            sed -i '/<Flow>/,/<\/Flow>/c\' flow_content.md docs/index.md
+
+            # 使用 `awk` 替换 index.md 中的 <Flow> 内容
+            awk '{
+              if ($0 ~ /<Flow>/) {
+                print $0;
+                while (getline line < "flow_content.md") {
+                  print line
+                }
+                while ($0 !~ /<\/Flow>/) {
+                  getline
+                }
+              } else {
+                print $0
+              }
+            }' docs/index.md > docs/index_temp.md && mv docs/index_temp.md docs/index.md
           else
-            echo "<Flow>标签未找到，无法进行修改</Flow>"
+            echo "<Flow>标签未找到，无法进行修改" >> docs/index.md
           fi
           rm flow_content.md
 
