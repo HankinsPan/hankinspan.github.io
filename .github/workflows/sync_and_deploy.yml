@@ -2,12 +2,9 @@ name: Sync and Deploy Workflow
 
 on:
   schedule:
-    - cron: '45 3 * * 4' # 每周四中午11点45（北京时间）
+    - cron: '55 3 * * 4' # 每周四中午11点55（北京时间）
   pull_request:
     types: [ closed ]
-    branches:
-      - master
-      - blog/sync
 
   # 允许你从 Actions 选项卡手动运行此工作流程
   workflow_dispatch:
