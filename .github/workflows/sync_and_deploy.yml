@@ -1,12 +1,11 @@
 name: Sync and Deploy Workflow
 
 on:
-  #  schedule:
-  #    - cron: '30 4 * * *'
-  #  push:
-  #    branches: [ master ]
+  schedule:
+    - cron: '30 3 * * 4' # 每周四中午11点半（北京时间）
   pull_request:
     types: [ closed ]
+
   # 允许你从 Actions 选项卡手动运行此工作流程
   workflow_dispatch:
 
@@ -21,6 +20,7 @@ concurrency:
 
 jobs:
   sync-and-deploy:
+    if: github.event.pull_request.base.ref == 'blog/sync' || github.event_name == 'schedule'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
