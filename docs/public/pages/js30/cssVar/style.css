@@ -1,0 +1,42 @@
+@import "/assets/css/js30.base.css";
+
+main{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+
+.header-tips{
+  font-size: 1.8rem;
+  color: white;
+}
+
+.control-space{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 20px 0;
+}
+
+.control-space .range-box{
+  align-items: center;
+  margin-top: 20px;
+  font-size: 1.4rem;
+  color: white;
+}
+
+.t-img{
+  padding: var(--spacing);
+  background: var(--base);
+  filter: blur(var(--blur));
+}
+
+.h1{
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: var(--base);
+}
+
