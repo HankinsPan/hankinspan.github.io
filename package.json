@@ -38,7 +38,7 @@
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs",
     "cm": "git-cz",
-    "cm:ci" : "git sts && git add . && git sts && git-cz --retry"
+    "cm:ci" : "git sts && git add . && git sts && git-cz && git push origin HEAD -f"
   },
   "dependencies": {
     "@giscus/vue": "^3.0.0",
