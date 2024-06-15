@@ -167,5 +167,7 @@ jobs:
             gh pr create --fill --base master --head $branch_name --title "Automated changes by GitHub Actions" --body "Automated changes by GitHub Actions"
           fi
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          # GT_TOKEN: ${{ secrets.GT_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
