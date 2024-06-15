@@ -144,6 +144,8 @@ jobs:
             # 切换到新的分支
             git checkout -b $branch_name
           fi
+
+          echo "branch_name=${branch_name}"
           
           git add .
           git commit -m "Automated changes by GitHub Actions"
