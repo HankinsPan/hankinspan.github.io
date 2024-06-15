@@ -2,12 +2,9 @@ name: Sync and Deploy Workflow
 
 on:
   schedule:
-    - cron: '45 3 * * 4' # 每周四中午11点45（北京时间）
+    - cron: '0 17 * * *' # 每天晚上1点执行（北京时间）
   pull_request:
     types: [ closed ]
-    branches:
-      - master
-      - blog/sync
 
   # 允许你从 Actions 选项卡手动运行此工作流程
   workflow_dispatch:
@@ -35,6 +32,13 @@ jobs:
         run: |
           sudo apt-get update
           sudo apt-get install -y jq
+
+      - name: Install GitHub CLI
+        run: |
+          sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-key C99B11DEB97541F0
+          sudo apt-add-repository https://cli.github.com/packages
+          sudo apt update
+          sudo apt install gh
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -89,7 +93,7 @@ jobs:
                 folder_name=$(basename "$dir")
                 description=$(grep -oP '(?<=<meta name="description" content=").*?(?=">)' "$dir/index.html")
                 echo "<CardLink" >> flow_content.md
-                echo "  icon=\"$(shuf -n 1 -e 🧭 🥁 🎸 🎹 🎺 🎻 🎷)\"" >> flow_content.md
+                echo "  icon=\"$(shuf -n 1 -e 🧭 🥁 🎸 🎹 🎺 🎻 🎷 🎤 🎧 🎥 🔉)\"" >> flow_content.md
                 echo "  title=\"$folder_name\"" >> flow_content.md
                 echo "  description=\"$description\"" >> flow_content.md
                 echo "  href=\"/pages/js30/$folder_name/index.html\">" >> flow_content.md
@@ -147,3 +151,11 @@ jobs:
           fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Create Pull Request
+        if: ${{ github.event_name == 'pull_request' }}
+        run: |
+          gh pr create --fill --base master --head $branch_name
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
