@@ -31,13 +31,14 @@
   "scripts": {
     "prepare": "husky",
     "lint-staged": "lint-staged",
-    "cm": "git-cz",
     "commitlint": "commitlint -e -V",
     "stylelint:fix": "stylelint 'docs/**/*.{html,vue,css,scss}' --fix",
     "stylelint:out": "stylelint 'docs/**/*.{html,vue,css,scss}' -o .stylelint-output.txt -f string",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
-    "docs:preview": "vitepress preview docs"
+    "docs:preview": "vitepress preview docs",
+    "cm": "git-cz",
+    "cm:ci" : "git sts && git add . && git sts && git-cz"
   },
   "dependencies": {
     "@giscus/vue": "^3.0.0",
