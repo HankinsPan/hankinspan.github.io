@@ -144,8 +144,6 @@ jobs:
             # 切换到新的分支
             git checkout -b $branch_name
           fi
-
-          echo "branch_name=${branch_name}"
           
           git add .
           git commit -m "Automated changes by GitHub Actions"
@@ -156,17 +154,18 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Checkout Branch
-        if: ${{ github.event_name == 'pull_request' }}
-        run: |
-          branch_name="blog/sync-auto${pr_number}"
-          git checkout $branch_name
-
       - name: Create Pull Request
         if: ${{ github.event_name == 'pull_request' }}
         run: |
-          branch_name="blog/sync-auto${pr_number}"
-          gh pr create --fill --base master --head $branch_name --title "Automated changes by GitHub Actions" --body "Automated changes by GitHub Actions"
+          # 检查事件是否为Pull Request
+          if [ "$GITHUB_EVENT_NAME" = "pull_request" ]; then
+            # 获取Pull Request编号
+            pr_number=$(jq -r '.pull_request.number' $GITHUB_EVENT_PATH)
+            # 创建新的分支名称
+            branch_name="blog/sync-auto${pr_number}"
+            # 创建Pull Request
+            gh pr create --fill --base master --head $branch_name --title "Automated changes by GitHub Actions" --body "Automated changes by GitHub Actions"
+          fi
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           GITHUB_REPOSITORY: ${{ github.repository }}
