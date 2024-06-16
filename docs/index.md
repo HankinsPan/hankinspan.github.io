@@ -21,55 +21,55 @@ hero:
 
 <Flow>
 <CardLink
-  icon="🎻"
+  icon="🔉"
   title="clock"
   description="这是一个由html+JavaScript+css实现的时钟"
   href="/pages/js30/clock/index.html">
 </CardLink>
 <CardLink
-  icon="🎥"
+  icon="🎹"
   title="cssVar"
   description="cssVar 简单调节器"
   href="/pages/js30/cssVar/index.html">
 </CardLink>
 <CardLink
-  icon="🎧"
+  icon="🎷"
   title="flexPlans"
   description="flexPlans 面板示例"
   href="/pages/js30/flexPlans/index.html">
 </CardLink>
 <CardLink
-  icon="🎻"
+  icon="🎧"
   title="h5VideoPlayer"
   description="一个简单的H5 视频播放示例"
   href="/pages/js30/h5VideoPlayer/index.html">
 </CardLink>
 <CardLink
-  icon="🎺"
+  icon="🥁"
   title="kit"
   description="键盘按键控制的简单架子鼓"
   href="/pages/js30/kit/index.html">
 </CardLink>
 <CardLink
-  icon="🎤"
+  icon="🧭"
   title="mouseMoveEffect"
   description="css text shadow mouse move effect"
   href="/pages/js30/mouseMoveEffect/index.html">
 </CardLink>
 <CardLink
-  icon="🎹"
+  icon="🎺"
   title="search"
   description="查询结构 结果列表关键字高亮"
   href="/pages/js30/search/index.html">
 </CardLink>
 <CardLink
-  icon="🎷"
+  icon="🥁"
   title="speak"
   description="speak words to show"
   href="/pages/js30/speak/index.html">
 </CardLink>
 <CardLink
-  icon="🎹"
+  icon="🧭"
   title="todoList"
   description="js+html+css实现的简单任务列表，可以选择单个和多个任务内容"
   href="/pages/js30/todoList/index.html">
