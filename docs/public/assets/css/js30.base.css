@@ -2,26 +2,22 @@
   font-family: Leckerli;
   font-style: normal;
   font-weight: normal;
-  src: url("/assets/fonts/LeckerliOne-Regular.ttf") format('truetype');
+  src: url("../assets/fonts/LeckerliOne-Regular.ttf") format('truetype');
 }
 
 html, body {
   height: 100%;
   padding: 0;
   margin: 0;
-  overflow-x: hidden;
   font-family: Roboto, sans-serif;
 }
 
 .background {
   position: absolute;
-  top: 0;
-  left: 0;
+  inset: 0;
   z-index: -1;
-  width: 100vw;
   height: 100vh;
   background-repeat: no-repeat;
-  background-position: center;
   background-size: cover;
 }
 
@@ -63,4 +59,22 @@ html, body {
 
 .footer a:hover {
   color: yellow;
+}
+
+@media (aspect-ratio >= 1.75/1) {
+  .background {
+    background-image: url("../images/landscape_1x2.jpg");
+  }
+}
+
+@media (aspect-ratio >= 0.8/1) and (aspect-ratio <= 1.75/1) {
+  .background {
+    background-image: url("../images/portrait_1x1.jpg");
+  }
+}
+
+@media (aspect-ratio <= 0.8/1) {
+  .background {
+    background-image: url("../images/portrait_2x1.jpg");
+  }
 }
